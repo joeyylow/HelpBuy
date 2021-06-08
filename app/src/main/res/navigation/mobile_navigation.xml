@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_transactions">
+
+    <fragment
+        android:id="@+id/nav_chats"
+        android:name="com.example.helpbuy.ui.chat.ChatFragment"
+        android:label="My Chats"
+        tools:layout="@layout/fragment_chat" />
+
+    <fragment
+        android:id="@+id/nav_transactions"
+        android:name="com.example.helpbuy.ui.transactions.TransactionsFragment"
+        android:label="My Transactions"
+        tools:layout="@layout/fragment_transactions" />
+
+    <fragment
+        android:id="@+id/nav_addrequest"
+        android:name="com.example.helpbuy.ui.addrequest.AddRequestFragment"
+        android:label="Add Request"
+        tools:layout="@layout/fragment_addrequest" />
+
+    <fragment
+        android:id="@+id/nav_addoffer"
+        android:name="com.example.helpbuy.ui.addoffer.AddOfferFragment"
+        android:label="Add Offer"
+        tools:layout="@layout/fragment_addoffer" />
+</navigation>

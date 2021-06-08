@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "656901252721",
+    "project_id": "helpbuycan-217c7",
+    "storage_bucket": "helpbuycan-217c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656901252721:android:5f99ea1b2e29d001b39dd0",
+        "android_client_info": {
+          "package_name": "com.example.helpbuy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "656901252721-vrui7r7h0o0j7jcuhd6905ub47sn07kr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkNIB4hs18i50a-Mkqn78i5voUItmThQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "656901252721-vrui7r7h0o0j7jcuhd6905ub47sn07kr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

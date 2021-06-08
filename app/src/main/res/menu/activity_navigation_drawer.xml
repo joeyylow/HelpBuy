@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_chats"
+            android:icon="@drawable/chats"
+            android:title="CHATS" />
+        <item
+            android:id="@+id/nav_transactions"
+            android:icon="@drawable/transactions"
+            android:title="TRANSACTIONS" />
+        <item
+            android:id="@+id/nav_addrequest"
+            android:icon="@drawable/job_request"
+            android:title="ADD JOB REQUEST" />
+        <item
+            android:id="@+id/nav_addoffer"
+            android:icon="@drawable/job_offer"
+            android:title="ADD JOB OFFER" />
+
+        <item
+            android:id="@+id/nav_listrequest"
+            android:icon="@drawable/job_request"
+            android:title="LIST OF REQUESTS" />
+        <item
+            android:id="@+id/nav_listoffer"
+            android:icon="@drawable/job_offer"
+            android:title="LIST OF OFFERS" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/settings"
+            android:title="SETTINGS" />
+    </group>
+</menu>

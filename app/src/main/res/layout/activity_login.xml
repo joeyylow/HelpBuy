@@ -5,31 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:label ="@string/logout"
     tools:context="com.example.helpbuy.SignUpActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/white"
+        android:background="@color/light_yellow_navi_bg"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin"
-        android:scrollbarThumbHorizontal="@drawable/app_logo"
-        android:scrollbarThumbVertical="@drawable/app_logo"
-        android:scrollbarTrackVertical="@drawable/app_logo">
+        android:scrollbarThumbHorizontal="@drawable/newapplogo"
+        android:scrollbarThumbVertical="@drawable/newapplogo"
+        android:scrollbarTrackVertical="@drawable/newapplogo">
 
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Welcome to Help Buy!"
+            android:textColor="@color/black"
+            android:textSize="14pt" />
 
         <ImageView
-            android:layout_width="155dp"
-            android:layout_height="171dp"
+            android:layout_width="186dp"
+            android:layout_height="166dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:scrollbarThumbHorizontal="@drawable/app_logo"
-            android:scrollbarThumbVertical="@drawable/app_logo"
-            android:scrollbarTrackVertical="@drawable/app_logo"
-            android:src="@drawable/app_logo"
-            app:srcCompat="@drawable/app_logo"
-            tools:srcCompat="@drawable/app_logo" />
+            android:scrollbarThumbHorizontal="@drawable/newapplogo"
+            android:scrollbarThumbVertical="@drawable/newapplogo"
+            android:scrollbarTrackVertical="@drawable/newapplogo"
+            android:src="@drawable/newapplogo"
+            app:srcCompat="@drawable/newapplogo" />
+            // tools:srcCompat="@drawable/newapplogo" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -39,7 +49,6 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/black"
@@ -54,7 +63,6 @@
                 android:id="@+id/password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:textColor="@color/black"
@@ -67,7 +75,7 @@
             android:id="@+id/btn_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
+            android:layout_marginTop="16dp"
             android:background="@color/btn_login_bg"
             android:text="@string/btn_login"
             android:textColor="@color/black"
@@ -87,15 +95,16 @@
 
         <Button
             android:id="@+id/btn_signup"
-            android:layout_width="fill_parent"
-            android:layout_height="61dp"
-            android:layout_marginTop="20dip"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:background="@null"
             android:text="NEW USER? REGISTER NOW"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="15sp"
-            app:backgroundTint="#FFD966" />
+            app:backgroundTint="@color/light_yellow_navi_bg" />
     </LinearLayout>
 
     <ProgressBar

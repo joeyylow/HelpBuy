@@ -4,38 +4,58 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.Editable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.helpbuy.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private EditText inputEmail, inputPassword;
+    private EditText inputUsername, inputEmail, inputPhoneNumber, inputPassword, inputPasswordAgain;
     private Button btnSignIn, btnSignUp, btnResetPassword;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
+    //private FirebaseUser user;
+    //private String userUID;
+    //private static final String TAG = "SignUpActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
-
         btnSignIn = (Button) findViewById(R.id.sign_in_button);
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
+        inputUsername = (EditText) findViewById(R.id.username);
         inputEmail = (EditText) findViewById(R.id.email);
+        inputPhoneNumber = (EditText) findViewById(R.id.phoneNumber);
         inputPassword = (EditText) findViewById(R.id.password);
+        inputPasswordAgain = (EditText) findViewById(R.id.reEnterPassword);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
 //        btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
@@ -53,6 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
+                String passwordAgain = inputPasswordAgain.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address", Toast.LENGTH_SHORT).show();
@@ -69,14 +90,36 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
+                if (password != passwordAgain) {
+                    Toast.makeText(getApplicationContext(), "Passwords do not match. Re-enter again.", Toast.LENGTH_SHORT).show();
+                }
+
+                auth = FirebaseAuth.getInstance();
+                //user = auth.getCurrentUser();
+
                 progressBar.setVisibility(View.VISIBLE);
                 //create user
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-//                                Toast.makeText(SignUpActivity.this, "Registration Successful" , Toast.LENGTH_SHORT).show();
+                                //userUID = user.getUid();
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                                String name = inputUsername.getText().toString();
+                                String phoneNumber = inputPhoneNumber.getText().toString();
+
+                                Map<String, String> newPost = new HashMap<>();
+                                newPost.put("Username", name);
+                                newPost.put("PhoneNumber", phoneNumber);
+
+                                //db.collection("Users").add(newPost);
+                                //db.collection("Users").document(userUID).set(newPost);
+                                db.collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(newPost);
+
+//                              Toast.makeText(SignUpActivity.this, "Registration Successful" , Toast.LENGTH_SHORT).show();
                                 View contextView = (View) findViewById(R.id.sign_up_button);
+
                                 Snackbar snackbar = Snackbar.make(contextView, "Registration Successful. Please log in." , Snackbar.LENGTH_LONG);
 //                                        .setAction("OK") {finish();}
                                 snackbar.setAction("Ok", new View.OnClickListener() {
@@ -113,6 +156,17 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         });
 
+                /*// Send user a verification email EDIT MORE IN PHASE 3
+                user.sendEmailVerification()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "Verification email has been sent.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+*/
             }
         });
 

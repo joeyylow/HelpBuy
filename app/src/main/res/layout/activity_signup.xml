@@ -5,30 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:scrollbarThumbHorizontal="@drawable/app_logo"
-    android:scrollbarThumbVertical="@drawable/app_logo"
-    android:scrollbarTrackHorizontal="@drawable/app_logo"
+    android:scrollbarThumbHorizontal="@drawable/newapplogo"
+    android:scrollbarThumbVertical="@drawable/newapplogo"
+    android:scrollbarTrackHorizontal="@drawable/newapplogo"
     tools:context="com.example.helpbuy.LoginActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/white"
+        android:background="@color/light_yellow_navi_bg"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
 
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textColor="@color/black"
+            android:textSize="14pt"
+            android:text="Join us today!" />
 
         <ImageView
             android:layout_width="186dp"
             android:layout_height="166dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:scrollbarThumbHorizontal="@drawable/app_logo"
-            android:scrollbarThumbVertical="@drawable/app_logo"
-            android:scrollbarTrackVertical="@drawable/app_logo"
-            android:src="@drawable/app_logo"
-            app:srcCompat="@drawable/app_logo" />
+            android:scrollbarThumbHorizontal="@drawable/newapplogo"
+            android:scrollbarThumbVertical="@drawable/newapplogo"
+            android:scrollbarTrackVertical="@drawable/newapplogo"
+            android:src="@drawable/newapplogo"
+            app:srcCompat="@drawable/newapplogo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_name"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -44,7 +66,19 @@
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorLink="#FBC02D" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_phonenumber"
+                android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -63,6 +97,19 @@
                 android:singleLine="true"
                 android:textColor="@color/black" />
             <!--android:imeActionId="@+id/login"-->
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/reEnterPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_reenterpassword"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!--        <Button-->
@@ -88,23 +135,24 @@
             android:text="@string/action_sign_in_short"
             android:textColor="@color/input_login"
             android:textStyle="bold"
-            app:backgroundTint="#FFD966" />
+            app:backgroundTint="#FFA000" />
 
         <Button
             android:id="@+id/sign_in_button"
-            android:layout_width="fill_parent"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
+            android:layout_marginTop="5dp"
             android:background="@color/white"
             android:fontFamily="sans-serif"
-            android:text="LOGIN"
+            android:text="LOGIN WITH YOUR NEW ACCOUNT"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/bg_register"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:backgroundTint="#FFD966"
-            app:rippleColor="@color/bg_register" />
+            app:backgroundTint="@color/light_yellow_navi_bg" />
+
     </LinearLayout>
 
     <ProgressBar

@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.helpbuy">
+    package="com.example.helpbuy" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/app_logo"
+        android:icon="@drawable/newapplogo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/app_logo"
+        android:roundIcon="@drawable/newapplogo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HelpBuy">
-        <activity android:name=".LoginActivity">
+        android:theme="@style/Theme.HelpBuy" >
+
+        <activity
+            android:name=".NavigationActivity"
+            android:label="Navigation"
+            android:theme="@style/Theme.HelpBuy.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter >
         </activity>
 
-        <activity android:name=".SignUpActivity">
+        <activity android:name=".LoginActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter >-->
         </activity>
 
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

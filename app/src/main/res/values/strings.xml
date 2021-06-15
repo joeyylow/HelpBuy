@@ -51,4 +51,12 @@
     <string name="chats">Chats</string>
     <string name="add_job_request">Add Job Request</string>
     <string name="logout">Logout</string>
+
+    <string name="item_description">Description of Item</string>
+    <string name="estprice">SGD$</string>
+    <string name="deldate">DD/MM/YYYY</string>
+    <string name="deltime">HH:MM (24HRS)</string>
+    <string name="delfees">SGD$</string>
+    <string name="remarks">Any additional remarks?</string>
+
 </resources>

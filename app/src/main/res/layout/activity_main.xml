@@ -6,13 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Activity Page"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/light_yellow_navi_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:scrollbarThumbHorizontal="@drawable/newapplogo"
+        android:scrollbarThumbVertical="@drawable/newapplogo"
+        android:scrollbarTrackVertical="@drawable/newapplogo"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/welcomeHello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Hello,"
+            android:textColor="@color/black"
+            android:textSize="14pt" />
+
+        <TextView
+            android:id="@+id/welcomeUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:textSize="20pt"
+            android:textStyle="italic" />
+
+        <ImageView
+            android:layout_width="253dp"
+            android:layout_height="241dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:scrollbarThumbHorizontal="@drawable/newapplogo"
+            android:scrollbarThumbVertical="@drawable/newapplogo"
+            android:scrollbarTrackVertical="@drawable/newapplogo"
+            android:src="@drawable/newapplogo"
+            app:srcCompat="@drawable/newapplogo" />
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/logo"
+            android:text="MAIN PAGE"
+            android:textSize="16dp"
+            app:backgroundTint="@color/logo" />
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Menu;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -17,8 +18,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import android.content.Intent;
+import android.widget.TextView;
 
 import com.example.helpbuy.databinding.ActivityNavigationBinding;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -48,8 +52,9 @@ public class NavigationActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
 
         //ADD THE BUTTON IDS HERE
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_chats,
-                R.id.nav_transactions, R.id.nav_addrequest, R.id.nav_addoffer)
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_chats, R.id.nav_transactions,
+                R.id.nav_addrequest, R.id.nav_addoffer,
+                R.id.nav_listrequest, R.id.nav_listoffer, R.id.nav_settings)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation);

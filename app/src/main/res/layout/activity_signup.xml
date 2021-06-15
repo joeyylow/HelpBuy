@@ -4,6 +4,175 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_yellow_navi_bg"
+    android:fitsSystemWindows="true"
+    android:scrollbarThumbHorizontal="@drawable/newapplogo"
+    android:scrollbarThumbVertical="@drawable/newapplogo"
+    android:scrollbarTrackHorizontal="@drawable/newapplogo"
+    tools:context="com.example.helpbuy.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_yellow_navi_bg"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textColor="@color/black"
+            android:textSize="14pt"
+            android:text="Join us today!" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_name"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorLink="#FBC02D"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_phonenumber"
+                android:inputType="phone"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:hint="@string/hint_password"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+            <!--android:imeActionId="@+id/login"-->
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/reEnterPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/hint_reenterpassword"
+                android:inputType="textPassword"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--        <Button-->
+        <!--            android:id="@+id/btn_reset_password"-->
+        <!--            android:layout_width="fill_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="20dip"-->
+        <!--            android:background="@null"-->
+        <!--            android:text="@string/btn_forgot_password"-->
+        <!--            android:textAllCaps="false"-->
+        <!--            android:textColor="@color/colorAccent" />-->
+
+        <!-- Link to Login Screen -->
+
+        <Button
+            android:id="@+id/sign_up_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorAccent"
+            android:fontFamily="sans-serif"
+            android:text="@string/action_sign_in_short"
+            android:textColor="@color/input_login"
+            android:textStyle="bold"
+            app:backgroundTint="#FFA000" />
+
+        <Button
+            android:id="@+id/sign_in_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:fontFamily="sans-serif"
+            android:text="LOGIN WITH YOUR NEW ACCOUNT"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/bg_register"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/light_yellow_navi_bg" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:scrollbarThumbHorizontal="@drawable/newapplogo"
     android:scrollbarThumbVertical="@drawable/newapplogo"
@@ -96,7 +265,7 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/black" />
-            <!--android:imeActionId="@+id/login"-->
+            &lt;!&ndash;android:imeActionId="@+id/login"&ndash;&gt;
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -112,17 +281,17 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--        <Button-->
-        <!--            android:id="@+id/btn_reset_password"-->
-        <!--            android:layout_width="fill_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="20dip"-->
-        <!--            android:background="@null"-->
-        <!--            android:text="@string/btn_forgot_password"-->
-        <!--            android:textAllCaps="false"-->
-        <!--            android:textColor="@color/colorAccent" />-->
+        &lt;!&ndash;        <Button&ndash;&gt;
+        &lt;!&ndash;            android:id="@+id/btn_reset_password"&ndash;&gt;
+        &lt;!&ndash;            android:layout_width="fill_parent"&ndash;&gt;
+        &lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;
+        &lt;!&ndash;            android:layout_marginTop="20dip"&ndash;&gt;
+        &lt;!&ndash;            android:background="@null"&ndash;&gt;
+        &lt;!&ndash;            android:text="@string/btn_forgot_password"&ndash;&gt;
+        &lt;!&ndash;            android:textAllCaps="false"&ndash;&gt;
+        &lt;!&ndash;            android:textColor="@color/colorAccent" />&ndash;&gt;
 
-        <!-- Link to Login Screen -->
+        &lt;!&ndash; Link to Login Screen &ndash;&gt;
 
         <Button
             android:id="@+id/sign_up_button"
@@ -141,7 +310,7 @@
             android:id="@+id/sign_in_button"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="39dp"
             android:layout_marginTop="5dp"
             android:background="@color/white"
             android:fontFamily="sans-serif"
@@ -163,4 +332,4 @@
         android:layout_marginBottom="20dp"
         android:visibility="gone" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>-->

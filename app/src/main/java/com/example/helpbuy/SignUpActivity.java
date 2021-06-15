@@ -3,6 +3,7 @@ package com.example.helpbuy;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.helpbuy.R;
@@ -27,7 +29,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -40,8 +45,6 @@ public class SignUpActivity extends AppCompatActivity {
     private Button btnSignIn, btnSignUp, btnResetPassword;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
-    //private FirebaseUser user;
-    //private String userUID;
     //private static final String TAG = "SignUpActivity";
 
     @Override
@@ -90,15 +93,15 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (password != passwordAgain) {
+                if (!password.equals(passwordAgain)) {
                     Toast.makeText(getApplicationContext(), "Passwords do not match. Re-enter again.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 auth = FirebaseAuth.getInstance();
-                //user = auth.getCurrentUser();
 
                 progressBar.setVisibility(View.VISIBLE);
-                //create user
+
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -113,15 +116,13 @@ public class SignUpActivity extends AppCompatActivity {
                                 newPost.put("Username", name);
                                 newPost.put("PhoneNumber", phoneNumber);
 
-                                //db.collection("Users").add(newPost);
-                                //db.collection("Users").document(userUID).set(newPost);
                                 db.collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(newPost);
 
-//                              Toast.makeText(SignUpActivity.this, "Registration Successful" , Toast.LENGTH_SHORT).show();
+                              //Toast.makeText(SignUpActivity.this, "Registration Successful" , Toast.LENGTH_SHORT).show();
                                 View contextView = (View) findViewById(R.id.sign_up_button);
 
                                 Snackbar snackbar = Snackbar.make(contextView, "Registration Successful. Please log in." , Snackbar.LENGTH_LONG);
-//                                        .setAction("OK") {finish();}
+                                        //.setAction("OK") {finish();}
                                 snackbar.setAction("Ok", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -169,14 +170,12 @@ public class SignUpActivity extends AppCompatActivity {
 */
             }
         });
-
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
             }
         });
-
     }
 
     @Override

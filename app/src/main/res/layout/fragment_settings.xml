@@ -13,6 +13,6 @@
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="13dp"
-        android:text="v3.0.0" />
+        android:text="v1.0.0" />
 
 </FrameLayout>

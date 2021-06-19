@@ -7,16 +7,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.helpbuy.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +45,6 @@ public class ListRequestFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_listrequest_list, container, false);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         requestsList = view.findViewById(R.id.requests_list);
-//        requestsList = (RecyclerView) view;
         Query query = db.collection("Job_requests").whereNotEqualTo("UID",false);
         FirestoreRecyclerOptions<Requests> options = new FirestoreRecyclerOptions.Builder<Requests>()
                 .setQuery(query,Requests.class)
@@ -66,18 +69,34 @@ public class ListRequestFragment extends Fragment {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        AppCompatActivity activity = (AppCompatActivity)v.getContext();
-                        RequestDetailsFragment detailsFragment = new RequestDetailsFragment();
+                        DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
+                        String documentID = snapshot.getId();
+                        RequestDetailsFragment detailsFragment = new RequestDetailsFragment(documentID,model.getItem(),
+                                model.getLocation(),model.getDeliveryDate(),model.getDeliveryTime(),model.getDeliveryFees(),
+                                model.getQuantity(), model.getRemarks());
                         getActivity()
                                 .getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.requestlistfull,detailsFragment)
-                                .addToBackStack("firstfragment")
+                                .add(R.id.requestlistfull,detailsFragment)
+                                .addToBackStack("requestlist")
                                 .commit();
                     }
                 });
             }
         };
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    showFragment();
+                    return true;
+                }
+                return false;
+            }
+        });
 
         Context context = view.getContext();
         requestsList.setHasFixedSize(true);
@@ -86,28 +105,18 @@ public class ListRequestFragment extends Fragment {
         return view;
     }
 
-//    public void onBackPressed(){
-//        if(getFragmentManager().getBackStackEntryCount() <= 1){
-//            getActivity().onBackPressed();
-//        } else {
-//            getFragmentManager().popBackStack();
-//        }
-//    }
-
+    public void showFragment() {
+        ListRequestFragment fragment = new ListRequestFragment();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.requestlistfull, fragment,"requestlist");
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
     public void onCreate(View view, Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                if(getFragmentManager().getBackStackEntryCount() <= 1){
-                    getActivity().onBackPressed();
-                } else {
-                    getFragmentManager().popBackStack();
-                }
-            }
-        };
     }
+
 
     public class RequestsViewHolder extends RecyclerView.ViewHolder{
         private TextView list_item;

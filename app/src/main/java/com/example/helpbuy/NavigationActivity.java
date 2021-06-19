@@ -5,9 +5,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Menu;
 
+import com.example.helpbuy.ui.listrequest.ListRequestFragment;
 import com.example.helpbuy.ui.listrequest.RequestDetailsFragment;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -71,14 +73,16 @@ public class NavigationActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public void onBackPressed(){
-        if(getFragmentManager().getBackStackEntryCount() <= 1){
-            super.onBackPressed();
-        } else {
-            getFragmentManager().popBackStack();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (getFragmentManager().getBackStackEntryCount() > 0) {
+//            getFragmentManager().popBackStack();
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
+
+
 
     //Sign out button
     @Override

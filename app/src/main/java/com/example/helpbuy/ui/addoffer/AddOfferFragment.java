@@ -62,6 +62,7 @@ public class AddOfferFragment extends Fragment {
                 newRequest.put("Min. Fees Request", minFeesRequest);
                 newRequest.put("Remarks", remarks);
                 newRequest.put("UID", uid);
+                newRequest.put("aUID","");
 
                 db.collection("Job_offers")
                         .add(newRequest);

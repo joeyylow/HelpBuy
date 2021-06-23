@@ -20,8 +20,9 @@ public class Requests {
     @PropertyName("Estimated Price")
     private String estimatedPrice;
     private String UID;
+    private String aUID;
 
-    public Requests(String item, String location, String deliveryDate, String deliveryTime, String deliveryFees, String quantity, String remarks, String estimatedPrice, String UID){
+    public Requests(String item, String location, String deliveryDate, String deliveryTime, String deliveryFees, String quantity, String remarks, String estimatedPrice, String UID, String aUID){
         this.Item = item;
         this.Location = location;
         this.deliveryDate = deliveryDate;
@@ -31,6 +32,7 @@ public class Requests {
         this.Remarks = remarks;
         this.estimatedPrice = estimatedPrice;
         this.UID = UID;
+        this.aUID = aUID;
     }
 
     public Requests() {}
@@ -114,5 +116,13 @@ public class Requests {
 
     public void setUID(String UID) {
         this.UID = UID;
+    }
+
+    public String getaUID() {
+        return aUID;
+    }
+
+    public void setaUID(String aUID) {
+        this.aUID = aUID;
     }
 }

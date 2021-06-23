@@ -82,24 +82,23 @@ public class RequestDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                DocumentReference docRef = db.collection("Job_requests").document(documentID);
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            Map<String, Object> newAcceptedRequest = document.getData();
-                            newAcceptedRequest.put("aUID", FirebaseAuth.getInstance().getCurrentUser().getUid());
-                            db.collection("Accepted_job_requests").add(newAcceptedRequest);
-                            db.collection("Job_requests").document(documentID).delete();
-                            openDialog();
-                        }
-                    }
-                    public void openDialog() {
-                        AcceptRequestDialogBox acceptRequestDialogBox = new AcceptRequestDialogBox();
-                        acceptRequestDialogBox.show(getFragmentManager(),"acceptrequestdialog");
-                    }
-                });
+                db.collection("Job_requests").document(documentID).update("aUID",FirebaseAuth.getInstance().getCurrentUser().getUid());
+                AcceptRequestDialogBox acceptRequestDialogBox = new AcceptRequestDialogBox();
+                acceptRequestDialogBox.show(getFragmentManager(),"acceptrequestdialog");
+//                DocumentReference docRef = db.collection("Job_requests").document(documentID);
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+////                            DocumentSnapshot document = task.getResult();
+////                            Map<String, Object> newAcceptedRequest = document.getData();
+////                            newAcceptedRequest.put("aUID", FirebaseAuth.getInstance().getCurrentUser().getUid());
+////                            db.collection("Accepted_job_requests").add(newAcceptedRequest);
+////                            db.collection("Job_requests").document(documentID).delete();
+//                            openDialog();
+//                        }
+//                    }
+
             }
         });
 

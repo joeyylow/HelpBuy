@@ -45,7 +45,7 @@ public class ListRequestFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_listrequest_list, container, false);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         requestsList = view.findViewById(R.id.requests_list);
-        Query query = db.collection("Job_requests").whereNotEqualTo("UID",false);
+        Query query = db.collection("Job_requests").whereEqualTo("aUID","");
         FirestoreRecyclerOptions<Requests> options = new FirestoreRecyclerOptions.Builder<Requests>()
                 .setQuery(query,Requests.class)
                 .build();

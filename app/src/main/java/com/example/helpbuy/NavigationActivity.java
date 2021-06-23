@@ -7,8 +7,11 @@ import android.view.Menu;
 
 import com.example.helpbuy.ui.listrequest.ListRequestFragment;
 import com.example.helpbuy.ui.listrequest.RequestDetailsFragment;
+import com.example.helpbuy.ui.transactions.TransactionActivity;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -24,6 +27,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import android.content.Intent;
 
 import com.example.helpbuy.databinding.ActivityNavigationBinding;
+
+import org.jetbrains.annotations.NotNull;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -52,8 +57,6 @@ public class NavigationActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 
-//        FragmentTransaction requestdetailsfrag = getSupportFragmentManager().beginTransaction();
-//        requestdetailsfrag.add(R.id.requestlistfull, new RequestDetailsFragment()).commit();
 
         //ADD THE BUTTON IDS HERE
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_chats,
@@ -145,4 +148,17 @@ public class NavigationActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+//        int id = item.getItemId();
+//        if (id == R.id.nav_transactions) {
+//            startActivity(new Intent(getApplicationContext(), TransactionActivity.class));
+//        } else {
+//            this.onNavigationItemSelected(item);
+//        }
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawer.closeDrawer(GravityCompat.START);
+//        return true;
+//    }
 }

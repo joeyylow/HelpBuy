@@ -75,24 +75,27 @@ public class OfferDetailsFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                DocumentReference docRef = db.collection("Job_offers").document(documentID);
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            Map<String, Object> newAcceptedOffer = document.getData();
-                            newAcceptedOffer.put("aUID", FirebaseAuth.getInstance().getCurrentUser().getUid());
-                            db.collection("Accepted_job_offers").add(newAcceptedOffer);
-                            db.collection("Job_offers").document(documentID).delete();
-                            openDialog();
-                        }
-                    }
-                    public void openDialog() {
-                        AcceptOfferDialogBox acceptOfferDialogBox = new AcceptOfferDialogBox();
-                        acceptOfferDialogBox.show(getFragmentManager(),"acceptofferdialog");
-                    }
-                });
+                db.collection("Job_offers").document(documentID).update("aUID",FirebaseAuth.getInstance().getCurrentUser().getUid());
+                AcceptOfferDialogBox acceptOfferDialogBox = new AcceptOfferDialogBox();
+                acceptOfferDialogBox.show(getFragmentManager(),"acceptofferdialog");
+//                DocumentReference docRef = db.collection("Job_offers").document(documentID);
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            Map<String, Object> newAcceptedOffer = document.getData();
+//                            newAcceptedOffer.put("aUID", FirebaseAuth.getInstance().getCurrentUser().getUid());
+//                            db.collection("Accepted_job_offers").add(newAcceptedOffer);
+//                            db.collection("Job_offers").document(documentID).delete();
+//                            openDialog();
+//                        }
+//                    }
+//                    public void openDialog() {
+//                        AcceptOfferDialogBox acceptOfferDialogBox = new AcceptOfferDialogBox();
+//                        acceptOfferDialogBox.show(getFragmentManager(),"acceptofferdialog");
+//                    }
+//                });
             }
         });
 

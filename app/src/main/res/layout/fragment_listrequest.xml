@@ -124,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:backgroundTint="#FFA000"
-        android:text="View Details"
+        android:text="Accept Request"
         android:textSize="12sp"
         app:cornerRadius="40dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/requestdetails"
+    android:id="@+id/offerdetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
@@ -21,45 +21,33 @@
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time:"
+            android:text="Duration at location:"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/requestdetails_deliverytime"
+            app:layout_constraintBottom_toBottomOf="@+id/offerdetails_deliverytime"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/requestdetails_deliverytime" />
+            app:layout_constraintTop_toTopOf="@+id/offerdetails_deliverytime" />
 
         <TextView
-            android:id="@+id/requestdetails_location"
+            android:id="@+id/offerdetails_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="20dp"
             android:text="TextView"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/textView17"
-            app:layout_constraintTop_toBottomOf="@+id/requestdetails_item" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delivery fees: $"
+            android:text="Min fees required: $"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/requestdetails_deliveryfees"
+            app:layout_constraintBottom_toBottomOf="@+id/offerdetails_deliveryfees"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/requestdetails_deliveryfees" />
-
-        <TextView
-            android:id="@+id/textView21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quantity:"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/requestdetails_quantity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/requestdetails_quantity" />
+            app:layout_constraintTop_toTopOf="@+id/offerdetails_deliveryfees" />
 
         <Button
             android:id="@+id/chatbutton"
@@ -67,16 +55,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:backgroundTint="#FFA000"
-            android:text="Chat with buyer"
+            android:text="Chat with deliverer"
             android:textSize="12sp"
             app:cornerRadius="30dp"
-            app:layout_constraintEnd_toStartOf="@+id/acceptreqbutton"
+            app:layout_constraintEnd_toStartOf="@+id/acceptofferbutton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/requestdetails_remarks" />
+            app:layout_constraintTop_toBottomOf="@+id/offerdetails_remarks" />
 
         <TextView
-            android:id="@+id/requestdetails_deliveryfees"
+            android:id="@+id/offerdetails_deliveryfees"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
@@ -84,14 +72,14 @@
             android:text="TextView"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/textView20"
-            app:layout_constraintTop_toBottomOf="@+id/requestdetails_deliverytime" />
+            app:layout_constraintTop_toBottomOf="@+id/offerdetails_deliverytime" />
 
         <Button
-            android:id="@+id/acceptreqbutton"
+            android:id="@+id/acceptofferbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFA000"
-            android:text="Accept request"
+            android:text="Accept offer"
             android:textSize="12sp"
             app:cornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="@+id/chatbutton"
@@ -101,39 +89,18 @@
             app:layout_constraintTop_toTopOf="@+id/chatbutton" />
 
         <TextView
-            android:id="@+id/requestdetails_quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="20dp"
-            android:text="TextView"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/textView21"
-            app:layout_constraintTop_toBottomOf="@+id/requestdetails_deliveryfees" />
-
-        <TextView
             android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Location:"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/requestdetails_location"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/requestdetails_location" />
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Item:"
-            android:textColor="@color/black"
-            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/offerdetails_location"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/requestdetails_deliverytime"
+            android:id="@+id/offerdetails_deliverytime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
@@ -141,7 +108,7 @@
             android:text="TextView"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/textView19"
-            app:layout_constraintTop_toBottomOf="@+id/requestdetails_deliverydate" />
+            app:layout_constraintTop_toBottomOf="@+id/offerdetails_deliverydate" />
 
         <TextView
             android:id="@+id/textView18"
@@ -150,23 +117,12 @@
             android:text="Date:"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/requestdetails_deliverydate"
+            app:layout_constraintBottom_toBottomOf="@+id/offerdetails_deliverydate"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/requestdetails_deliverydate" />
+            app:layout_constraintTop_toTopOf="@+id/offerdetails_deliverydate" />
 
         <TextView
-            android:id="@+id/requestdetails_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:text="TextView"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/textView16"
-            app:layout_constraintStart_toEndOf="@+id/textView16"
-            app:layout_constraintTop_toTopOf="@+id/textView16" />
-
-        <TextView
-            android:id="@+id/requestdetails_remarks"
+            android:id="@+id/offerdetails_remarks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
@@ -174,10 +130,10 @@
             android:text="TextView"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/textView22"
-            app:layout_constraintTop_toBottomOf="@+id/requestdetails_quantity" />
+            app:layout_constraintTop_toBottomOf="@+id/offerdetails_deliveryfees" />
 
         <TextView
-            android:id="@+id/requestdetails_deliverydate"
+            android:id="@+id/offerdetails_deliverydate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
@@ -185,7 +141,7 @@
             android:text="TextView"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/textView18"
-            app:layout_constraintTop_toBottomOf="@+id/requestdetails_location" />
+            app:layout_constraintTop_toBottomOf="@+id/offerdetails_location" />
 
         <TextView
             android:id="@+id/textView22"
@@ -194,9 +150,9 @@
             android:text="Remarks:"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/requestdetails_remarks"
+            app:layout_constraintBottom_toBottomOf="@+id/offerdetails_remarks"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/requestdetails_remarks" />
+            app:layout_constraintTop_toTopOf="@+id/offerdetails_remarks" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

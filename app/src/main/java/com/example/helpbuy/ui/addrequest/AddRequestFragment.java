@@ -69,6 +69,7 @@ public class AddRequestFragment extends Fragment {
                 newRequest.put("Delivery Fees", deliveryFees);
                 newRequest.put("Remarks", remarks);
                 newRequest.put("UID", uid);
+                newRequest.put("aUID","");
 
                 db.collection("Job_requests")
                         .add(newRequest);

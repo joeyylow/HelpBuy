@@ -15,15 +15,17 @@ public class Offers {
     private String Duration;
 
     private String UID;
+    private String aUID;
 
 
-    public Offers(String location, String dateOfPurchase, String minFeesRequest, String remarks, String duration, String uid) {
+    public Offers(String location, String dateOfPurchase, String minFeesRequest, String remarks, String duration, String uid, String aUID) {
         this.Location = location;
         this.dateOfPurchase = dateOfPurchase;
         this.minFeesRequest = minFeesRequest;
         this.Remarks = remarks;
         this.Duration = duration;
         this.UID = uid;
+        this.aUID = aUID;
     }
     public Offers() {}
 
@@ -78,5 +80,13 @@ public class Offers {
 
     public void setUID(String UID) {
         this.UID = UID;
+    }
+
+    public String getaUID() {
+        return aUID;
+    }
+
+    public void setaUID(String aUID) {
+        this.aUID = aUID;
     }
 }

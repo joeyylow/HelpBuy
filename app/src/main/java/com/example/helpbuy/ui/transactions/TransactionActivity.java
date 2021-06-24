@@ -15,8 +15,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class TransactionActivity extends AppCompatActivity {
 
-    private ListRequestFragment requestFragment;
-    private ListOfferFragment offerFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

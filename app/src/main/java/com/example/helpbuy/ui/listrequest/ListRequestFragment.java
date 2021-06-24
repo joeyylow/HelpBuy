@@ -66,14 +66,14 @@ public class ListRequestFragment extends Fragment {
                 holder.list_deliverytime.setText(model.getDeliveryTime());
                 holder.list_deliveryfees.setText(model.getDeliveryFees());
 
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                holder.listrequest_viewdetailsbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
                         String documentID = snapshot.getId();
                         RequestDetailsFragment detailsFragment = new RequestDetailsFragment(documentID,model.getItem(),
                                 model.getLocation(),model.getDeliveryDate(),model.getDeliveryTime(),model.getDeliveryFees(),
-                                model.getQuantity(), model.getRemarks());
+                                model.getQuantity(), model.getRemarks(),model.getUID());
                         getActivity()
                                 .getSupportFragmentManager()
                                 .beginTransaction()
@@ -124,6 +124,7 @@ public class ListRequestFragment extends Fragment {
         private TextView list_deliverydate;
         private TextView list_deliverytime;
         private TextView list_deliveryfees;
+        private Button listrequest_viewdetailsbtn;
 
         public RequestsViewHolder(@NonNull View itemView){
             super(itemView);
@@ -132,6 +133,7 @@ public class ListRequestFragment extends Fragment {
             list_deliverydate = itemView.findViewById(R.id.list_deliverydate);
             list_deliverytime = itemView.findViewById(R.id.list_deliverytime);
             list_deliveryfees = itemView.findViewById(R.id.list_deliveryfees);
+            listrequest_viewdetailsbtn = itemView.findViewById(R.id.listrequest_viewdetailsbtn);
 //            requestViewDetailsButton = (Button) itemView.findViewById(R.id.listrequest_viewdetailsbtn);
 //            requestViewDetailsButton.setOnClickListener(new View.OnClickListener() {
 //                @Override

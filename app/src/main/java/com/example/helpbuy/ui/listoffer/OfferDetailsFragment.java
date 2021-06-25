@@ -35,19 +35,21 @@ public class OfferDetailsFragment extends Fragment{
     private String deliveryfeesString;
     private String remarksString;
     private String documentID;
+    private String UID;
 
     public OfferDetailsFragment() {
         // Required empty public constructor
     }
 
     public OfferDetailsFragment(String documentID, String locationString, String dateString, String timeString,
-                                  String deliveryfeesString,  String remarksString){
+                                  String deliveryfeesString,  String remarksString, String UIDString){
         this.documentID = documentID;
         this.locationString = locationString;
         this.dateString = dateString;
         this.timeString = timeString;
         this.deliveryfeesString = deliveryfeesString;
         this.remarksString = remarksString;
+        this.UID = UIDString;
     }
 
     @Override
@@ -59,15 +61,29 @@ public class OfferDetailsFragment extends Fragment{
         TextView time = view.findViewById(R.id.offerdetails_deliverytime);
         TextView deliveryfees = view.findViewById(R.id.offerdetails_deliveryfees);
         TextView remarks = view.findViewById(R.id.offerdetails_remarks);
+        TextView user = view.findViewById(R.id.delivererusername);
 
-        location.setText(locationString);
-        date.setText(dateString);
-        time.setText(dateString);
-        deliveryfees.setText(deliveryfeesString);
-        remarks.setText(remarksString);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("Users").document(this.UID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    String username = (String) document.get("Username");
+
+                    location.setText(locationString);
+                    date.setText(dateString);
+                    time.setText(dateString);
+                    deliveryfees.setText(deliveryfeesString);
+                    remarks.setText(remarksString);
+                    user.setText(username);
+                }
+            }
+        });
+
 
         //Button activity
-        Button btnChat = (Button) view.findViewById(R.id.chatbutton);
         Button btnAcceptOffer = (Button) view.findViewById(R.id.acceptofferbutton);
 
 

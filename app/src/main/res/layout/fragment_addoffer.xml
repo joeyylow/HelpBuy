@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center|center_vertical"
     android:paddingLeft="30dp"
-    android:paddingTop="60dp"
+    android:paddingTop="10dp"
     android:paddingRight="30dp">
 
     <ScrollView
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:fontFamily="monospace"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:text="Submit"
                 android:textColor="@color/black"
                 app:backgroundTint="#FFA000"

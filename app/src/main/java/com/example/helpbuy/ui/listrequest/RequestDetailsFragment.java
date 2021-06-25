@@ -76,6 +76,7 @@ public class RequestDetailsFragment extends Fragment {
 //        quantity.setText(quantityString);
 //        remarks.setText(remarksString);
 
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("Users").document(this.UID);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

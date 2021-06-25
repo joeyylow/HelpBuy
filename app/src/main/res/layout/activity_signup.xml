@@ -25,9 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed-medium"
+            android:text="Join us today!"
             android:textColor="@color/black"
-            android:textSize="14pt"
-            android:text="Join us today!" />
+            android:textSize="14pt" />
 
         <TextView
             android:id="@+id/textView2"

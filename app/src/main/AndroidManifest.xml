@@ -27,25 +27,28 @@
             android:label="My Transactions">
         </activity>
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:theme="@style/Theme.HelpBuy.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter >
         </activity>
 
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".MainActivity" />
 
         <activity
             android:name=".ui.chat.ChatMainActivity"
+            android:theme="@style/Theme.HelpBuy.NoActionBar"
             android:label="My Chats">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter >-->
         </activity>
 
+        <activity android:name=".SignUpActivity"
+            android:theme="@style/Theme.HelpBuy.NoActionBar"/>
+
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.HelpBuy.NoActionBar"/>
+
+      
     </application>
 
 </manifest>

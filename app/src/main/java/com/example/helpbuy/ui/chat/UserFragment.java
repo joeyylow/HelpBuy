@@ -61,23 +61,33 @@ public class UserFragment extends Fragment {
 
     private void readUsers() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Users").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        mUsers.clear();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String username = document.getString("Username");
-                            User user = document.toObject(User.class);
-                            user.setUsername(username);
+        db.collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                String currusername = (String) task.getResult().get("Username");
+                db.collection("Users").get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                mUsers.clear();
+                                for (QueryDocumentSnapshot document : task.getResult()) {
 
-                            if (!user.getUsername().equals("")) {
-                                mUsers.add(user);
+                                    String username = document.getString("Username");
+                                    User user = document.toObject(User.class);
+                                    user.setUsername(username);
+
+                                    if (!user.getUsername().equals("") && !user.getUsername().equals(currusername)) {
+                                        mUsers.add(user);
+                                    }
+                                }
+                                userAdapter = new UserAdapter(getContext(), mUsers);
+                                recyclerView.setAdapter(userAdapter);
                             }
-                        }
-                        userAdapter = new UserAdapter(getContext(), mUsers);
-                        recyclerView.setAdapter(userAdapter);
-                    }
-                });
+                        });
+            }
+        });
+
+
     }
 }

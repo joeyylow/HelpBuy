@@ -4,13 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     android:background="@color/light_yellow_navi_bg"
-=======
-    android:background="@color/white"
->>>>>>> 0ae77dc540fe6e7bba747b6be36dfbd8aebb386d
     tools:context=".ui.chat.ChatFragment">
-
 
     <TextView
         android:id="@+id/text_chats"

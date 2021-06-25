@@ -16,6 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.helpbuy.R;
 import com.example.helpbuy.ui.chat.MessageActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 //import com.google.firebase.firestore.auth.User;
 
 import org.jetbrains.annotations.NotNull;
@@ -52,6 +57,23 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println(user.getUsername());
+                /*FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("Users").get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                                for (QueryDocumentSnapshot doc : task.getResult()) {
+                                    String pressedUsername = doc.getString("Username");
+                                    if (pressedUsername.equals(user.getUsername())) {
+                                        String docID = doc.getId();
+                                        System.out.println(docID);
+                                        user.setId(docID);
+                                    }
+                                }
+                            }
+                        });*/
+                user.setId("cjDWgajSUZMjM4fWXHk6zmlQJwZ2");
                 Intent intent = new Intent(mContext, MessageActivity.class);
                 intent.putExtra("userid", user.getId());
                 mContext.startActivity(intent);

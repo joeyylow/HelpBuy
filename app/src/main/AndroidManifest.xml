@@ -12,36 +12,40 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HelpBuy">
 
-        <activity android:name=".ui.chat.MessageActivity"></activity>
+        <activity
+            android:name=".ui.chat.MessageActivity"
+            android:theme="@style/Theme.HelpBuy.NoActionBar">
+        </activity>
 
         <activity
             android:name=".NavigationActivity"
-            android:theme="@style/Theme.HelpBuy.NoActionBar"></activity>
-
-        <activity android:name=".NavigationActivity"
             android:theme="@style/Theme.HelpBuy.NoActionBar">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter >-->
         </activity>
 
         <activity
             android:name=".ui.transactions.TransactionActivity"
-            android:label="My Transactions"></activity>
+            android:label="My Transactions">
+        </activity>
 
         <activity android:name=".LoginActivity">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter >-->
+        </activity>
+
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".MainActivity" />
+
+        <activity
+            android:name=".ui.chat.ChatMainActivity"
+            android:label="My Chats">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter >
         </activity>
-        
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".MainActivity" />
-        <activity
-            android:name=".ui.chat.ChatMainActivity"
-            android:label="My Chats"></activity>
+
     </application>
 
 </manifest>

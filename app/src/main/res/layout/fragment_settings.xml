@@ -15,4 +15,12 @@
         android:textSize="13dp"
         android:text="v1.0.0" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="SETTINGS IS INCOMPLETE" />
+
 </FrameLayout>

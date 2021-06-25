@@ -16,12 +16,6 @@ import com.example.helpbuy.R;
 
 public class ChatFragment extends Fragment {
 
-    private ChatViewModel mViewModel;
-
-    public static ChatFragment newInstance() {
-        return new ChatFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

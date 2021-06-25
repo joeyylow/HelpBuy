@@ -36,7 +36,6 @@ public class TransactionFragment extends Fragment {
                 startActivity(new Intent(getActivity(),TransactionActivity.class));
             }
         });
-
         return view;
     }
 

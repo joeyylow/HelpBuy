@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/logo"
-            android:text="MAIN PAGE"
+            android:text="Start My HelpBuy Journey!"
             android:textSize="16dp"
             app:backgroundTint="@color/logo" />
 

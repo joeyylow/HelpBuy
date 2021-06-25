@@ -14,22 +14,11 @@
 
         <activity android:name=".NavigationActivity"
             android:theme="@style/Theme.HelpBuy.NoActionBar">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter >-->
         </activity>
 
         <activity
             android:name=".ui.transactions.TransactionActivity"
-            android:label="Transactions">
-<!--            <meta-data-->
-<!--                android:name="android.support.PARENT_ACTIVITY"-->
-<!--                android:value=".NavigationActivity" />-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter >-->
+            android:label="My Transactions">
         </activity>
 
         <activity android:name=".LoginActivity">
@@ -39,8 +28,15 @@
             </intent-filter >
         </activity>
 
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".SignUpActivity"
+            android:theme="@style/Theme.HelpBuy.NoActionBar"/>
+
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.HelpBuy.NoActionBar"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

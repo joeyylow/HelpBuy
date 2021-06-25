@@ -120,19 +120,6 @@ public class TransactionFragment extends Fragment {
                 return false;
             }
         });
-
-
-
-
-
-//        Button btnViewTransactions = view.findViewById(R.id.myacceptedoffersbutton);
-//        btnViewTransactions.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getActivity(),TransactionActivity.class));
-//            }
-//        });
-
         return view;
     }
 

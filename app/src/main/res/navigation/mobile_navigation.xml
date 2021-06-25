@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_chats"
-        android:name="com.example.helpbuy.ui.chat.ChatFragment"
+        android:name="com.example.helpbuy.ui.chat.ChatMainFragment"
         android:label="My Chats"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat_main" />
 
     <fragment
         android:id="@+id/nav_transactions"

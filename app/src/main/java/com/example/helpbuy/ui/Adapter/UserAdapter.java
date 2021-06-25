@@ -57,8 +57,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(user.getUsername());
-                /*FirebaseFirestore db = FirebaseFirestore.getInstance();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
                 db.collection("Users").get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -67,16 +66,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                                     String pressedUsername = doc.getString("Username");
                                     if (pressedUsername.equals(user.getUsername())) {
                                         String docID = doc.getId();
-                                        System.out.println(docID);
                                         user.setId(docID);
+                                        Intent intent = new Intent(mContext, MessageActivity.class);
+                                        intent.putExtra("userid", user.getId());
+                                        mContext.startActivity(intent);
+                                        break;
                                     }
                                 }
                             }
-                        });*/
-                user.setId("cjDWgajSUZMjM4fWXHk6zmlQJwZ2");
-                Intent intent = new Intent(mContext, MessageActivity.class);
-                intent.putExtra("userid", user.getId());
-                mContext.startActivity(intent);
+                        });
+
             }
         });
     }

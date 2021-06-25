@@ -9,7 +9,6 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.helpbuy.R;
 import com.example.helpbuy.databinding.FragmentAddrequestBinding;
@@ -29,21 +28,21 @@ public class AddRequestFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        addRequestViewModel =
-                new ViewModelProvider(this).get(AddRequestViewModel.class);
+//        addRequestViewModel =
+//                new ViewModelProvider(this).get(AddRequestViewModel.class);
 
-        binding = FragmentAddrequestBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        View view = inflater.inflate(R.layout.fragment_addrequest, container, false);
 
-        btnSubmit = (Button) root.findViewById(R.id.btn_submitrequest);
-        textLocation = (EditText) root.findViewById(R.id.requestlocation);
-        textItem = (EditText) root.findViewById(R.id.requestitemdescription);
-        textQuantity = (EditText) root.findViewById(R.id.reqquantity);
-        textEstPrice = (EditText) root.findViewById(R.id.reqestprice);
-        textDeliveryDate = (EditText) root.findViewById(R.id.deliverydate);
-        textDeliveryTime = (EditText) root.findViewById(R.id.deliverytime);
-        textDeliveryFees = (EditText) root.findViewById(R.id.deliveryfees);
-        textRemarks = (EditText) root.findViewById(R.id.reqremarks);
+
+        btnSubmit = (Button) view.findViewById(R.id.btn_submitrequest);
+        textLocation = (EditText) view.findViewById(R.id.requestlocation);
+        textItem = (EditText) view.findViewById(R.id.requestitemdescription);
+        textQuantity = (EditText) view.findViewById(R.id.reqquantity);
+        textEstPrice = (EditText) view.findViewById(R.id.reqestprice);
+        textDeliveryDate = (EditText) view.findViewById(R.id.deliverydate);
+        textDeliveryTime = (EditText) view.findViewById(R.id.deliverytime);
+        textDeliveryFees = (EditText) view.findViewById(R.id.deliveryfees);
+        textRemarks = (EditText) view.findViewById(R.id.reqremarks);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,9 +72,16 @@ public class AddRequestFragment extends Fragment {
 
                 db.collection("Job_requests")
                         .add(newRequest);
+
+                RequestDialogBox dialogBox = new RequestDialogBox();
+                dialogBox.show(getFragmentManager(),"dialog");
+
+                ClearAction();
+
             }
         });
-        return root;
+
+        return view;
     }
 
     @Override
@@ -83,4 +89,20 @@ public class AddRequestFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    public void ClearAction() {
+        textLocation.getText().clear();
+        textItem.getText().clear();
+        textQuantity.getText().clear();
+        textEstPrice.getText().clear();
+        textDeliveryDate.getText().clear();
+        textDeliveryFees.getText().clear();
+        textDeliveryTime.getText().clear();
+        textRemarks.getText().clear();
+    }
 }
+
+
+
+
+

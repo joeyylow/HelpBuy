@@ -35,13 +35,14 @@ public class RequestDetailsFragment extends Fragment {
     private String quantityString;
     private String remarksString;
     private String documentID;
+    private String UID;
 
     public RequestDetailsFragment() {
         // Required empty public constructor
     }
 
     public RequestDetailsFragment(String documentID, String itemString, String locationString, String dateString, String timeString,
-                                  String deliveryfeesString, String quantityString,  String remarksString){
+                                  String deliveryfeesString, String quantityString,  String remarksString, String UIDString){
         this.documentID = documentID;
         this.itemString = itemString;
         this.locationString = locationString;
@@ -50,6 +51,7 @@ public class RequestDetailsFragment extends Fragment {
         this.deliveryfeesString = deliveryfeesString;
         this.quantityString = quantityString;
         this.remarksString = remarksString;
+        this.UID = UIDString;
     }
 
     @Override
@@ -64,17 +66,39 @@ public class RequestDetailsFragment extends Fragment {
         TextView deliveryfees = view.findViewById(R.id.requestdetails_deliveryfees);
         TextView remarks = view.findViewById(R.id.requestdetails_remarks);
         TextView quantity = view.findViewById(R.id.requestdetails_quantity);
+        TextView user = view.findViewById(R.id.buyerusername);
 
-        item.setText(itemString);
-        location.setText(locationString);
-        date.setText(dateString);
-        time.setText(dateString);
-        deliveryfees.setText(deliveryfeesString);
-        quantity.setText(quantityString);
-        remarks.setText(remarksString);
+//        item.setText(itemString);
+//        location.setText(locationString);
+//        date.setText(dateString);
+//        time.setText(dateString);
+//        deliveryfees.setText(deliveryfeesString);
+//        quantity.setText(quantityString);
+//        remarks.setText(remarksString);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("Users").document(this.UID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    String username = (String) document.get("Username");
+                    user.setText(username);
+
+                    item.setText(itemString);
+                    location.setText(locationString);
+                    date.setText(dateString);
+                    time.setText(dateString);
+                    deliveryfees.setText(deliveryfeesString);
+                    quantity.setText(quantityString);
+                    remarks.setText(remarksString);
+                }
+            }
+        });
+
 
         //Button activity
-        Button btnChat = (Button) view.findViewById(R.id.chatbutton);
         Button btnAcceptReq = (Button) view.findViewById(R.id.acceptreqbutton);
 
 

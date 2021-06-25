@@ -20,7 +20,11 @@ import com.example.helpbuy.ui.listoffer.Offers;
 import com.example.helpbuy.ui.listrequest.Requests;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -59,6 +63,33 @@ public class MyOfferFragment extends Fragment {
                 holder.offerdetails_deliverytime.setText(model.getDuration());
                 holder.offerdetails_deliveryfees.setText(model.getMinFeesRequest());
                 holder.offerdetails_remarks.setText(model.getRemarks());
+
+                DocumentReference docRef = db.collection("Users").document(model.getUID());
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            String delivereruser = (String) document.get("Username");
+                            holder.offerdetails_delivererusername.setText(delivereruser);
+                        }
+                    }
+                });
+                if (model.getaUID().equals("")) {
+                    holder.offerdetails_buyerusername.setText("");
+                } else {
+                    DocumentReference doc = db.collection("Users").document(model.getaUID());
+                    doc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                String buyeruser = (String) document.get("Username");
+                                holder.offerdetails_buyerusername.setText(buyeruser);
+                            }
+                        }
+                    });
+                }
             }
         };
 
@@ -101,6 +132,8 @@ public class MyOfferFragment extends Fragment {
         private TextView offerdetails_deliverytime;
         private TextView offerdetails_deliveryfees;
         private TextView offerdetails_remarks;
+        private TextView offerdetails_delivererusername;
+        private TextView offerdetails_buyerusername;
 
         public OffersViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -109,6 +142,8 @@ public class MyOfferFragment extends Fragment {
             offerdetails_deliverytime = itemView.findViewById(R.id.offerdetails_deliverytime);
             offerdetails_deliveryfees = itemView.findViewById(R.id.offerdetails_deliveryfees);
             offerdetails_remarks = itemView.findViewById(R.id.offerdetails_remarks);
+            offerdetails_delivererusername = itemView.findViewById(R.id.delivererusername);
+            offerdetails_buyerusername = itemView.findViewById(R.id.buyerusername);
 //            requestViewDetailsButton = (Button) itemView.findViewById(R.id.listrequest_viewdetailsbtn);
 //            requestViewDetailsButton.setOnClickListener(new View.OnClickListener() {
 //                @Override

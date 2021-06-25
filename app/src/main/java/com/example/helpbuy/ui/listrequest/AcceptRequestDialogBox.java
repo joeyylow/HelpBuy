@@ -20,7 +20,7 @@ public class AcceptRequestDialogBox extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Confirm submission")
-                .setMessage("Job request accepted. Please contact the buyer for more information.")
+                .setMessage("Job request accepted. Please contact the buyer for more information in Chats.")
                 .setPositiveButton("Return", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         ListRequestFragment fragment = new ListRequestFragment();
@@ -29,12 +29,12 @@ public class AcceptRequestDialogBox extends DialogFragment {
                         transaction.addToBackStack(null);
                         transaction.commit();
                     }
-                })
-                .setNegativeButton("Contact buyer", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-//                        startActivity(new Intent(getActivity(), ChatActivity.class))
-                    }
                 });
+//                .setPositiveButton("Contact buyer", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+////                        startActivity(new Intent(getActivity(), ChatActivity.class))
+//                    }
+//                });
         return builder.create();
     }
 }

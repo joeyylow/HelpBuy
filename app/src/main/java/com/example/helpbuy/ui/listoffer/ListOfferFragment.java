@@ -19,6 +19,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -55,14 +56,14 @@ public class ListOfferFragment extends Fragment {
                 holder.offerlist_duration.setText(model.getDuration());
                 holder.offerlist_minfeesrequest.setText(model.getMinFeesRequest());
 
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                holder.listoffer_viewdetailsbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
                         String documentID = snapshot.getId();
                         OfferDetailsFragment detailsFragment = new OfferDetailsFragment(documentID,
                                 model.getLocation(),model.getDateOfPurchase(),model.getDuration(),model.getMinFeesRequest(),
-                                model.getRemarks());
+                                model.getRemarks(),model.getUID());
                         getActivity()
                                 .getSupportFragmentManager()
                                 .beginTransaction()
@@ -110,6 +111,7 @@ public class ListOfferFragment extends Fragment {
         private TextView offerlist_dateofpurchase;
         private TextView offerlist_duration;
         private TextView offerlist_minfeesrequest;
+        private Button listoffer_viewdetailsbtn;
 
         public OffersViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -117,6 +119,7 @@ public class ListOfferFragment extends Fragment {
             offerlist_dateofpurchase = itemView.findViewById(R.id.offerlist_dateofpurchase);
             offerlist_duration = itemView.findViewById(R.id.offerlist_duration);
             offerlist_minfeesrequest = itemView.findViewById(R.id.offerlist_minfeesrequest);
+            listoffer_viewdetailsbtn = itemView.findViewById(R.id.listoffer_viewdetailsbtn);
         }
     }
 

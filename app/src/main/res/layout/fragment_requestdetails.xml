@@ -7,7 +7,10 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
     android:background="@color/light_yellow_navi_bg"
-    android:padding="16dp">
+    android:paddingStart="16dp"
+    android:paddingLeft="16dp"
+    android:paddingEnd="16dp"
+    android:paddingRight="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -61,20 +64,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/requestdetails_quantity" />
 
-        <Button
-            android:id="@+id/chatbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="#FFA000"
-            android:text="Chat with buyer"
-            android:textSize="12sp"
-            app:cornerRadius="30dp"
-            app:layout_constraintEnd_toStartOf="@+id/acceptreqbutton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/requestdetails_remarks" />
-
         <TextView
             android:id="@+id/requestdetails_deliveryfees"
             android:layout_width="wrap_content"
@@ -90,15 +79,15 @@
             android:id="@+id/acceptreqbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:backgroundTint="#FFA000"
             android:text="Accept request"
             android:textSize="12sp"
             app:cornerRadius="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/chatbutton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/chatbutton"
-            app:layout_constraintTop_toTopOf="@+id/chatbutton" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buyerusername" />
 
         <TextView
             android:id="@+id/requestdetails_quantity"
@@ -197,6 +186,27 @@
             app:layout_constraintBottom_toBottomOf="@+id/requestdetails_remarks"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/requestdetails_remarks" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buyer:"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/buyerusername"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buyerusername" />
+
+        <TextView
+            android:id="@+id/buyerusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/requestdetails_remarks" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

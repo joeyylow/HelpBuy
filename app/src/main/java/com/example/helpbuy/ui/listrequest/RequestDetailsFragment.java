@@ -90,7 +90,7 @@ public class RequestDetailsFragment extends Fragment {
                     item.setText(itemString);
                     location.setText(locationString);
                     date.setText(dateString);
-                    time.setText(dateString);
+                    time.setText(timeString);
                     deliveryfees.setText(deliveryfeesString);
                     quantity.setText(quantityString);
                     remarks.setText(remarksString);

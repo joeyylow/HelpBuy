@@ -18,8 +18,9 @@ public class OfferDialogBox extends DialogFragment {
             public void onClick(DialogInterface dialog, int id) {
 
             }
-        }).setTitle("Offer Submitted").setMessage("A buyer will contact you when the offer is accepted. " +
-                "You can also view your offer under Transactions");
+        }).setTitle("Offer Submitted").setMessage("We have received your offer. " +
+                "You can view it under Transactions > My Offers. " +
+                "A buyer will contact you once he/ she accepts your offer.");
         return builder.create();
     }
 

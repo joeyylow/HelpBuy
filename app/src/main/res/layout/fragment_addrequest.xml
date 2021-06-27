@@ -5,9 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center|center_vertical"
+    android:orientation="vertical"
     android:paddingLeft="30dp"
     android:paddingTop="10dp"
     android:paddingRight="30dp">
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="Key in the details of the items that you want so that others can buy them for you!"
+        android:textColor="@color/black" />
 
     <ScrollView
         android:id="@+id/main"

@@ -22,8 +22,9 @@ public class RequestDialogBox extends DialogFragment {
             public void onClick(DialogInterface dialog, int id) {
 
             }
-        }).setTitle("Request Submitted").setMessage("A deliverer will contact you when the request is accepted. " +
-                "You can also view your request under Transactions");
+        }).setTitle("Request Submitted").setMessage("We have received your request. " +
+                "You can view it under Transactions > My Requests. " +
+                "A deliverer will contact you once he/ she accepts your request.");
         return builder.create();
     }
 

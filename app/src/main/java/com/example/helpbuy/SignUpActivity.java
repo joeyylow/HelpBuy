@@ -108,7 +108,6 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
 
                 } else {
-
                     db = FirebaseFirestore.getInstance();
                     Query query = db.collection("Users").whereEqualTo("Username", username);
                     Task<QuerySnapshot> tasksnapshot = query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -117,9 +116,7 @@ public class SignUpActivity extends AppCompatActivity {
                             QuerySnapshot snapshot = task.getResult();
                             if (!snapshot.isEmpty()) {
                                 Toast.makeText(getApplicationContext(), "Username Exists. Please enter another username", Toast.LENGTH_SHORT).show();
-
                             } else {
-
                                 auth = FirebaseAuth.getInstance();
                                 progressBar.setVisibility(View.VISIBLE);
                                 auth.createUserWithEmailAndPassword(email, password)

@@ -18,7 +18,7 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:text="Key in the details of the items that you want so that others can help buy it back for you!"
+        android:text="Key in the details of the items that you want so that others can buy them for you!"
         android:textColor="@color/black" />
 
     <ScrollView

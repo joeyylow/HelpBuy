@@ -25,7 +25,7 @@ public class ChatMainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chat_main, container, false);
 
-        Button btnViewChats = view.findViewById(R.id.chatButton);
+        Button btnViewChats = view.findViewById(R.id.beginChatButton);
         btnViewChats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

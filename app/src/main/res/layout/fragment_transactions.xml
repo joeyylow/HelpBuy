@@ -75,7 +75,7 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="257dp"
+        android:layout_width="250dp"
         android:layout_height="203dp"
         app:layout_constraintBottom_toTopOf="@+id/myoffersbutton"
         app:layout_constraintEnd_toEndOf="parent"

@@ -15,7 +15,7 @@ This project uses Android Studio. For the best user experience and to access all
 
 ## Usage
 ### Login Screen 
-This screen will be the first screen that users see when they enter the app. When they log in into the system, a successful log in will bring them to the Main Activity Page, which has yet to be developed. Unsuccessful logins will prompt users to sign up or check their credentials.
+This screen will be the first screen that users see when they enter the app. When they log in into the system, a successful log in will bring them to the Main Activity Page. Unsuccessful logins will prompt users to sign up or check their credentials.
 
 <img align="left" src="https://user-images.githubusercontent.com/78250310/120108271-04d19a80-c197-11eb-9cfe-40bafa9552d7.png" width="200">
 <img align="center" src="https://user-images.githubusercontent.com/78250310/120108267-0307d700-c197-11eb-9f84-066ddfa92c86.png" width="200">
@@ -27,6 +27,8 @@ Upon pressing on the “New User? Register Now” button, users will be led to t
 <img align="left" src="https://user-images.githubusercontent.com/78250310/120108482-e1f3b600-c197-11eb-9286-cf43eb433f73.png" width="200">
 <img align="center" src="https://user-images.githubusercontent.com/78250310/120108484-e28c4c80-c197-11eb-97ab-d42b719b11a7.png" width="200">
 <img src="https://user-images.githubusercontent.com/78250310/120108485-e324e300-c197-11eb-9fdf-562506670a23.png" width="200">
+
+More details can be found in our Milestone 2's README document.
 
 ## Contributing
 ### Contributors

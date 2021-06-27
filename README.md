@@ -28,7 +28,7 @@ Upon pressing on the “New User? Register Now” button, users will be led to t
 <img align="center" src="https://user-images.githubusercontent.com/78250310/120108484-e28c4c80-c197-11eb-97ab-d42b719b11a7.png" width="200">
 <img src="https://user-images.githubusercontent.com/78250310/120108485-e324e300-c197-11eb-9fdf-562506670a23.png" width="200">
 
-More details can be found in our Milestone 2's README document.
+Details of our other app features can be found in our Milestone 2's README document.
 
 ## Contributing
 ### Contributors

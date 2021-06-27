@@ -76,8 +76,6 @@ public class ChatFragment extends Fragment {
                                             Chat chat = doc.toObject(Chat.class);
                                             chat.setSender(sender);
                                             chat.setReceiver(receiver);
-                                            System.out.println(sender);
-                                            System.out.println(receiver);
 
                                             if (chat.getSender().equals(currUserUID)) {
                                                 usersList.add(chat.getReceiver());
@@ -132,8 +130,10 @@ public class ChatFragment extends Fragment {
                                             User user = doc.toObject(User.class);
                                             String docID = doc.getId();
                                             user.setId(docID);
+                                            String username = doc.getString("Username");
+                                            user.setUsername(username);
 
-                                            //display 1 user from chats
+                                            //display 1 user from chats PROBLEMATIC
                                             for (String id : usersList) {
                                                 if (user.getId().equals(id)) {
                                                     if (mUsers.size() != 0) {

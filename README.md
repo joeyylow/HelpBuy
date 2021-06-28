@@ -4,17 +4,17 @@ Help Buy is a mobile application which aims to target NUS staff and students liv
 ## Install 
 This project uses Android Studio. For the best user experience and to access all features from the app, it would be recommended to test the prototype on an Android phone by following the steps below:
 
-1. Download Android Studio or IntelliJ on the computer
-2. Connect the computer to an Android phone with a USB
+1. Download Android Studio or IntelliJ on the computer.
+2. Connect the computer to an Android phone with a USB.
 3. On the phone, open the Settings app. If your device uses Android v8.0 or higher, select System. Otherwise, proceed to the next step.
 4. Scroll to the bottom and select About phone.
 5. Scroll to the bottom and tap Build number seven times.
 6. Return to the previous screen, scroll to the bottom, and tap Developer options.
 7. In the Developer options window, scroll down to find and enable USB debugging.
-8. In this GitHub repository master branch, clone the repository 
+8. In this GitHub repository _master_ branch, clone the repository.
 9. Open the file using Android Studio.
 10. On the computer, click on the “play” icon at the top right hand side in Android Studio to launch the application.
-11. Ensure that both devices are connected to the internet for the features to work
+11. Ensure that both devices are connected to the internet for the features to work.
 
 ## Usage
 ### Login Screen 

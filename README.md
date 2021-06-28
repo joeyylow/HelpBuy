@@ -11,8 +11,10 @@ This project uses Android Studio. For the best user experience and to access all
 5. Scroll to the bottom and tap Build number seven times.
 6. Return to the previous screen, scroll to the bottom, and tap Developer options.
 7. In the Developer options window, scroll down to find and enable USB debugging.
-8. On the computer, click on the “play” icon at the top right hand side in Android Studio to launch the application.
-9. Ensure that both devices are connected to the internet for the features to work
+8. In this GitHub repository master branch, clone the repository 
+9. Open the file using Android Studio.
+10. On the computer, click on the “play” icon at the top right hand side in Android Studio to launch the application.
+11. Ensure that both devices are connected to the internet for the features to work
 
 ## Usage
 ### Login Screen 

@@ -23,7 +23,6 @@ This project uses Android Studio. For the best user experience and to access all
 <img src="https://user-images.githubusercontent.com/78250310/120108268-04390400-c197-11eb-9161-a6db22cdcc1f.png" width="200">
 
 ### Sign up screen
-Upon pressing on the “New User? Register Now” button, users will be led to the sign up screen where they will need to register with the system. A successful registration will show a confirmation while an unsuccessful one will provide an error message.
 <img src="https://user-images.githubusercontent.com/78250310/123545770-6e3fcb80-d78c-11eb-93af-222cf6d6a8f9.png" width="200">
 
 ### Main Page

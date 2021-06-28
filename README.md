@@ -24,14 +24,14 @@ This project uses Android Studio. For the best user experience and to access all
 
 ### Sign up screen
 Upon pressing on the “New User? Register Now” button, users will be led to the sign up screen where they will need to register with the system. A successful registration will show a confirmation while an unsuccessful one will provide an error message.
-<img align="center" src="https://user-images.githubusercontent.com/78250310/123545770-6e3fcb80-d78c-11eb-93af-222cf6d6a8f9.png" width="200">
+<img align="left" src="https://user-images.githubusercontent.com/78250310/123545770-6e3fcb80-d78c-11eb-93af-222cf6d6a8f9.png" width="200">
 
 ### Main Page
 <img src="https://user-images.githubusercontent.com/78250310/123545777-7bf55100-d78c-11eb-8b90-f4b1bda24849.png" width="200">
 
 ### Add Job Offers/Requests
-<img src="https://user-images.githubusercontent.com/78250310/123545792-8879a980-d78c-11eb-8757-1bf3bdbd72fd.png" width="200">
-<img src="https://user-images.githubusercontent.com/78250310/123545795-89aad680-d78c-11eb-92d5-79ba4dde1789.png" width="200">
+<img align="left" src="https://user-images.githubusercontent.com/78250310/123545792-8879a980-d78c-11eb-8757-1bf3bdbd72fd.png" width="200">
+<img align="center" src="https://user-images.githubusercontent.com/78250310/123545795-89aad680-d78c-11eb-92d5-79ba4dde1789.png" width="200">
 
 ### View list of job offers/requests
 <img src="https://user-images.githubusercontent.com/78250310/123545800-92031180-d78c-11eb-804d-d27deed5b470.png" width="200">

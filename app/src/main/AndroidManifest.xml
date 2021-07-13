@@ -14,16 +14,19 @@
 
         <activity
             android:name=".ui.chat.MessageActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.HelpBuy.NoActionBar">
         </activity>
 
         <activity
             android:name=".NavigationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.HelpBuy.NoActionBar">
         </activity>
 
         <activity
             android:name=".ui.transactions.TransactionActivity"
+            android:screenOrientation="portrait"
             android:label="My Transactions">
         </activity>
 
@@ -38,6 +41,7 @@
 
         <activity
             android:name=".ui.chat.ChatMainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.HelpBuy.NoActionBar"
             android:label="My Chats">
         </activity>
@@ -46,8 +50,8 @@
             android:theme="@style/Theme.HelpBuy.NoActionBar"/>
 
         <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.HelpBuy.NoActionBar"/>
-
       
     </application>
 

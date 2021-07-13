@@ -63,20 +63,20 @@ public class EditProfileFragment extends Fragment {
                 }
 
                 else {
-                    Query query = db.collection("Users").whereEqualTo("Username", username);
+                    Query query = db.collection("Users").whereEqualTo("Search", username.toLowerCase());
                     query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                             QuerySnapshot snapshot = task.getResult();
                             if (!snapshot.isEmpty()) {
-
-
                                 Toast.makeText(getContext(), "Username Exists. Please enter another username", Toast.LENGTH_SHORT).show();
                             } else {
                                 currentDoc.update("Username", username);
-                                currentDoc.update("Search", username);
+                                currentDoc.update("Search", username.toLowerCase());
                                 currentDoc.update("PhoneNumber", phoneNumber);
                                 Toast.makeText(getContext(), "Profile updated.", Toast.LENGTH_SHORT).show();
+                                inputNewUsername.getText().clear();
+                                inputNewPhoneNumber.getText().clear();
                             }
                         }
                     });

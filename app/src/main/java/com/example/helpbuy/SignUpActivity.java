@@ -109,7 +109,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 } else {
                     db = FirebaseFirestore.getInstance();
-                    Query query = db.collection("Users").whereEqualTo("Username", username);
+                    Query query = db.collection("Users").whereEqualTo("Search", username.toLowerCase());
                     Task<QuerySnapshot> tasksnapshot = query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {

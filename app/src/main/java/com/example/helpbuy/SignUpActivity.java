@@ -146,6 +146,9 @@ public class SignUpActivity extends AppCompatActivity {
                                                     Map<String, String> newPost = new HashMap<>();
                                                     newPost.put("Username", name);
                                                     newPost.put("PhoneNumber", phoneNumber);
+                                                    /*newPost.put("imageURL", "default");
+                                                    newPost.put("Status", "offline");*/
+                                                    newPost.put("Search", name.toLowerCase());
 
                                                     db.collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(newPost);
 

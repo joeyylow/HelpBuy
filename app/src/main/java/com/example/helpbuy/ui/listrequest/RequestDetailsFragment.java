@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class RequestDetailsFragment extends Fragment {
 
-    private FragmentRequestdetailsBinding binding;
+    //private FragmentRequestdetailsBinding binding;
     private String itemString;
     private String locationString;
     private String dateString;
@@ -76,7 +76,6 @@ public class RequestDetailsFragment extends Fragment {
 //        quantity.setText(quantityString);
 //        remarks.setText(remarksString);
 
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("Users").document(this.UID);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -90,7 +89,7 @@ public class RequestDetailsFragment extends Fragment {
                     item.setText(itemString);
                     location.setText(locationString);
                     date.setText(dateString);
-                    time.setText(dateString);
+                    time.setText(timeString);
                     deliveryfees.setText(deliveryfeesString);
                     quantity.setText(quantityString);
                     remarks.setText(remarksString);

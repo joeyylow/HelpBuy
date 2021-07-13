@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.helpbuy.R;
 import com.example.helpbuy.databinding.FragmentAddofferBinding;
 import com.example.helpbuy.ui.addrequest.RequestDialogBox;
+import com.example.helpbuy.ui.listoffer.Offers;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -64,10 +65,17 @@ public class AddOfferFragment extends Fragment {
                 newRequest.put("Remarks", remarks);
                 newRequest.put("UID", uid);
                 newRequest.put("aUID","");
+                newRequest.put("LowercapsLocation", location.toLowerCase());
+
+                String documentID = db.collection("Job_offers").document().getId();
+                newRequest.put("DOCID", documentID);
 
                 db.collection("Job_offers")
-                        .add(newRequest);
+                        .document(documentID)
+                        .set(newRequest);
 
+                Offers offer = new Offers(location, dateOfPurchase, minFeesRequest, remarks,
+                        duration, uid, "", documentID);
 
                 OfferDialogBox dialogBox = new OfferDialogBox();
                 dialogBox.show(getFragmentManager(),"dialog");
@@ -77,7 +85,6 @@ public class AddOfferFragment extends Fragment {
                 textMinFeesRequest.getText().clear();
                 textDuration.getText().clear();
                 textRemarks.getText().clear();
-
             }
         });
         return root;

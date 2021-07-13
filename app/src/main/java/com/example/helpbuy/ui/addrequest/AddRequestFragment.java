@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.helpbuy.R;
 import com.example.helpbuy.databinding.FragmentAddrequestBinding;
+import com.example.helpbuy.ui.listoffer.Offers;
+import com.example.helpbuy.ui.listrequest.Requests;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -69,9 +71,17 @@ public class AddRequestFragment extends Fragment {
                 newRequest.put("Remarks", remarks);
                 newRequest.put("UID", uid);
                 newRequest.put("aUID","");
+                newRequest.put("LowercapsLocation", location.toLowerCase());
+
+                String documentID = db.collection("Job_requests").document().getId();
+                newRequest.put("DOCID", documentID);
 
                 db.collection("Job_requests")
-                        .add(newRequest);
+                        .document(documentID)
+                        .set(newRequest);
+
+                Requests request = new Requests(item, location, deliveryDate, deliveryTime,
+                        deliveryFees, quantity, remarks, estPrice, uid, "", documentID);
 
                 RequestDialogBox dialogBox = new RequestDialogBox();
                 dialogBox.show(getFragmentManager(),"dialog");

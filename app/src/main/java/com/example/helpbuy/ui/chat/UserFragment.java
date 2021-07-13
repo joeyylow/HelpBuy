@@ -38,6 +38,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class UserFragment extends Fragment {
@@ -97,9 +99,11 @@ public class UserFragment extends Fragment {
                         for (QueryDocumentSnapshot doc : task.getResult()) {
                             User user = doc.toObject(User.class);
                             String docID = doc.getId();
+                            String docUsername = doc.getString("Username");
                             user.setId(docID);
+                            user.setUsername(docUsername);
 
-                            if (!user.getId().equals(currUserUID)) {
+                            if (!user.getUsername().equals("") && !user.getId().equals(currUserUID)) {
                                 mUsers.add(user);
                             }
                         }
@@ -107,35 +111,6 @@ public class UserFragment extends Fragment {
                         recyclerView.setAdapter(userAdapter);
                     }
                 });
-
-        /*FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
-        Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("username")
-                .startAt(s)
-                .endAt(s + "\uf8ff");*/
-
-        /*query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
-                mUsers.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class);
-
-                    assert user != null;
-                    assert fuser != null;
-                    if (!user.getId().equals(fuser.getUid())) {
-                        mUsers.add(user);
-                    }
-                }
-
-                userAdapter = new UserAdapter(getContext(), mUsers);
-                recyclerView.setAdapter(userAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });*/
     }
 
     private void readUsers() {
@@ -145,7 +120,7 @@ public class UserFragment extends Fragment {
             @Override
             public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
                 String currusername = (String) task.getResult().get("Username");
-                db.collection("Users").get()
+                db.collection("Users").orderBy("Search").get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -168,7 +143,5 @@ public class UserFragment extends Fragment {
                         });
             }
         });
-
-
     }
 }

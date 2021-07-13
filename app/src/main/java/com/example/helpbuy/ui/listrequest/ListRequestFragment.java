@@ -2,36 +2,38 @@ package com.example.helpbuy.ui.listrequest;
 
 import android.content.Context;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.helpbuy.R;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListRequestFragment extends Fragment {
     private RecyclerView requestsList;
@@ -39,6 +41,9 @@ public class ListRequestFragment extends Fragment {
     private Button requestViewDetailsButton;
     private FirestoreRecyclerAdapter adapter;
 
+    EditText search_location_request;
+    private List<Requests> mRequests;
+    private ListRequestFragAdapter requestFragAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -102,7 +107,56 @@ public class ListRequestFragment extends Fragment {
         requestsList.setHasFixedSize(true);
         requestsList.setLayoutManager(new LinearLayoutManager(context));
         requestsList.setAdapter(adapter);
+
+        mRequests = new ArrayList<>();
+
+        //TO SEARCH LOCATION
+        search_location_request = view.findViewById(R.id.search_location_request);
+        search_location_request.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchLocationRequest(s.toString().toLowerCase());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         return view;
+    }
+
+    private void searchLocationRequest(String s) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Job_requests").orderBy("LowercapsLocation")
+                .startAt(s)
+                .endAt(s + "\uf8ff")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                        mRequests.clear();
+                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                            Requests request = doc.toObject(Requests.class);
+
+                            String docID = doc.getString("DOCID");
+                            request.setdocID(docID);
+
+                            String personAcceptedUID = request.getaUID();
+                            if (personAcceptedUID.equals("")) {
+                                mRequests.add(request);
+                            }
+                        }
+                        requestFragAdapter = new ListRequestFragAdapter(getContext(), mRequests);
+                        requestsList.setAdapter(requestFragAdapter);
+                    }
+                });
     }
 
     public void showFragment() {
@@ -134,16 +188,16 @@ public class ListRequestFragment extends Fragment {
             list_deliverytime = itemView.findViewById(R.id.list_deliverytime);
             list_deliveryfees = itemView.findViewById(R.id.list_deliveryfees);
             listrequest_viewdetailsbtn = itemView.findViewById(R.id.listrequest_viewdetailsbtn);
-//            requestViewDetailsButton = (Button) itemView.findViewById(R.id.listrequest_viewdetailsbtn);
-//            requestViewDetailsButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    FragmentTransaction detailsfragment = getFragmentManager().beginTransaction();
-//                    detailsfragment.replace(R.id.requestdetails, new RequestDetailsFragment());
-//                    detailsfragment.commit();
-//                }
-//
-//            });
+            requestViewDetailsButton = (Button) itemView.findViewById(R.id.listrequest_viewdetailsbtn);
+            requestViewDetailsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentTransaction detailsfragment = getFragmentManager().beginTransaction();
+                    detailsfragment.replace(R.id.requestdetails, new RequestDetailsFragment());
+                    detailsfragment.commit();
+                }
+
+            });
 
         }
     }
@@ -159,23 +213,4 @@ public class ListRequestFragment extends Fragment {
         super.onStart();
         adapter.startListening();
     }
-
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.fragment_listrequest_list, container, false);
-//
-//        // Set the adapter
-//        if (view instanceof RecyclerView) {
-//            Context context = view.getContext();
-//            RecyclerView recyclerView = (RecyclerView) view;
-//            if (mColumnCount <= 1) {
-//                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-//            } else {
-//                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-//            }
-//            recyclerView.setAdapter(new MylistrequestRecyclerViewAdapter(PlaceholderContent.ITEMS));
-//        }
-//        return view;
-//    }
 }

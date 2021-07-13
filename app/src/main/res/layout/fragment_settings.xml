@@ -1,26 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settingscontainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.settings.SettingsFragment">
 
-    <TextView
-        android:id="@+id/versionnumber"
+    <Button
+        android:id="@+id/sendfeedbackbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="13dp"
-        android:text="v1.0.0" />
+        android:layout_marginBottom="100dp"
+        android:background="#FBC02D"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        android:text="Send feedback>"
+        app:backgroundTint="@null"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/versionnumber"
+        tools:layout_editor_absoluteX="-35dp" />
+
+    <Button
+        android:id="@+id/editprofilebutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="#FBC02D"
+        android:backgroundTint="@null"
+        android:text="Edit profile>"
+        app:backgroundTint="@null"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/changepasswordbutton"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/changepasswordbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="#FBC02D"
+        android:text="Change password>"
+        android:textSize="15sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/sendfeedbackbutton"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/versionnumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="v1.0.0"
+        app:backgroundTint="@null"
+        android:textColor="@color/black"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="176dp"
+        android:layout_height="186dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/profilelogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="SETTINGS IS INCOMPLETE" />
+        android:fontFamily="@font/montserrat_bold"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/editprofilebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

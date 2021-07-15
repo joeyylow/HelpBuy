@@ -47,7 +47,18 @@
         </activity>
 
         <activity android:name=".SignUpActivity"
-            android:theme="@style/Theme.HelpBuy.NoActionBar"/>
+            android:theme="@style/Theme.HelpBuy.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data
+                    android:host="helpbuycan.firebaseapp.com"
+                    android:scheme="https" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
 
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"

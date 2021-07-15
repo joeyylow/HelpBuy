@@ -22,9 +22,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
@@ -39,6 +42,7 @@ import com.google.firebase.ktx.Firebase;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -82,6 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
                 String passwordAgain = inputPasswordAgain.getText().toString().trim();
+                String phoneNumber = inputPhoneNumber.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address", Toast.LENGTH_SHORT).show();
@@ -103,13 +108,23 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
+                if (phoneNumber.length()<8){
+                    Toast.makeText(getApplicationContext(), "Invalid phone number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    Toast.makeText(getApplicationContext(), "Invalid email.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if (!password.equals(passwordAgain)) {
                     Toast.makeText(getApplicationContext(), "Passwords do not match. Re-enter again.", Toast.LENGTH_SHORT).show();
                     return;
 
                 } else {
                     db = FirebaseFirestore.getInstance();
-                    Query query = db.collection("Users").whereEqualTo("Search", username.toLowerCase());
+                    Query query = db.collection("Users").whereEqualTo("Username", username);
                     Task<QuerySnapshot> tasksnapshot = query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
@@ -153,18 +168,19 @@ public class SignUpActivity extends AppCompatActivity {
                                                     db.collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(newPost);
 
                                                     //Toast.makeText(SignUpActivity.this, "Registration Successful" , Toast.LENGTH_SHORT).show();
-                                                    View contextView = (View) findViewById(R.id.sign_up_button);
-
-                                                    Snackbar snackbar = Snackbar.make(contextView, "Registration Successful. Please log in.", Snackbar.LENGTH_LONG);
-                                                    //.setAction("OK") {finish();}
-                                                    snackbar.setAction("Ok", new View.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(View v) {
-                                                            // Call your action method here
-                                                            snackbar.dismiss();
-                                                        }
-                                                    });
-                                                    snackbar.show();
+//                                                    View contextView = (View) findViewById(R.id.sign_up_button);
+                                                    sendEmailVerification();
+//
+//                                                    Snackbar snackbar = Snackbar.make(contextView, "Please verify your email and log in", Snackbar.LENGTH_LONG);
+//                                                    //.setAction("OK") {finish();}
+//                                                    snackbar.setAction("Ok", new View.OnClickListener() {
+//                                                        @Override
+//                                                        public void onClick(View v) {
+//                                                            // Call your action method here
+//                                                            snackbar.dismiss();
+//                                                        }
+//                                                    });
+//                                                    snackbar.show();
 
                                                     progressBar.setVisibility(View.GONE);
                                                 }
@@ -194,6 +210,7 @@ public class SignUpActivity extends AppCompatActivity {
 */
             }
         });
+
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,6 +218,38 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
+
+    protected void sendEmailVerification() {
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        user.sendEmailVerification()
+                .addOnCompleteListener(this, new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if (task.isSuccessful()) {
+                            Log.d("SUCCESS", "sendEmailVerification", task.getException());
+                            View contextView = (View) findViewById(R.id.sign_up_button);
+                            Snackbar snackbar = Snackbar.make(contextView, "Please verify your email and log in", Snackbar.LENGTH_LONG);
+                            //.setAction("OK") {finish();}
+                            snackbar.setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    // Call your action method here
+                                    snackbar.dismiss();
+                                }
+                            });
+                            snackbar.show();
+                        } else {
+                            Log.e("ERROR", "sendEmailVerification", task.getException());
+                            Toast.makeText(getApplicationContext(),
+                                    "Failed to send verification email.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+        auth.signOut();
+    }
+
 
     @Override
     protected void onResume() {

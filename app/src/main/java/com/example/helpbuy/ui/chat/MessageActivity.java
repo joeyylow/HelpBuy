@@ -1,6 +1,7 @@
 package com.example.helpbuy.ui.chat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,9 +31,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -133,23 +137,6 @@ public class MessageActivity extends AppCompatActivity {
                         readMessages(currUserUID, userid/*, user.getImageURL()*/);
                     }
                 });
-
-        /*fuser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                username.setText(user.getUsername());
-                if (user.getImageURL().equals("default")){
-                    profile_image.setImageResource(R.mipmap.ic_launcher);
-                } else {
-                    //and this
-                    Glide.with(getApplicationContext()).load(user.getImageURL()).into(profile_image);
-                }
-
-            }*/
     }
     private void sendMessage(String sender, String receiver, String message, String time) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -162,39 +149,13 @@ public class MessageActivity extends AppCompatActivity {
 
         db.collection("Chats").document().set(newMessage);
 
-        // add user to chat fragment
-        /*final DatabaseReference chatRef = db.collection("Chatlist")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child(userid);
+        Map<String, Object> newChatlistID = new HashMap<>();
+        newChatlistID.put("receiver", receiver);
+        newChatlistID.put("sender", sender);
 
-        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                if (!dataSnapshot.exists()) {
-                    chatRef.child("id").setValue(userid);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });*/
-
-        /*DocumentReference chatRef = db.collection("Chatlist")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-        chatRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot doc = task.getResult();
-                            if (!doc.exists()) {
-                                chatRef.set(userid);
-                            }
-                        }
-                    }
-                });*/
+        db.collection("Chatlist")
+                .document()
+                .set(newChatlistID);
     }
 
     private void readMessages(String myID, String userid/*, String imageurl*/) {
@@ -230,28 +191,5 @@ public class MessageActivity extends AppCompatActivity {
                                 });
                     }
                 });
-
-        /*reference = FirebaseDatabase.getInstance().getReference("Chats");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
-                mChat.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Chat chat = snapshot.getValue(Chat.class);
-                    if (chat.getReceiver().equals(myID) && chat.getSender().equals(userid) ||
-                            chat.getReceiver().equals(userid) && chat.getSender().equals(myID)) {
-                        mChat.add(chat);
-                    }
-
-                    messageAdapter = new MessageAdapter(MessageActivity.this, mChat*//*, imageurl*//*);
-                    recyclerView.setAdapter(messageAdapter);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });*/
     }
 }

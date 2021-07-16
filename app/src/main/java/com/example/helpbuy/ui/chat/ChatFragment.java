@@ -28,6 +28,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -45,8 +47,7 @@ public class ChatFragment extends Fragment {
     private UserAdapter userAdapter;
     private List<User> mUsers;
 
-    //private List<Chatlist> usersList;
-    private List<String> usersList;
+    private List<Chatlist> usersList;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -61,86 +62,40 @@ public class ChatFragment extends Fragment {
 
         usersList = new ArrayList<>();
 
-        /*FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Chatlist").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                        db.collection("Chatlist").get()
-                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                                        usersList.clear();
-                                        for (QueryDocumentSnapshot doc : task.getResult()) {
-                                            String id = doc.getString("id");
-                                            Chatlist chatlist = doc.toObject(Chatlist.class);
-                                            chatlist.setId(id);
-
-                                            usersList.add(chatlist);
-                                        }
-
-                                        chatList();
-                                    }
-                                });
-                    }
-                });*/
-
-
-        // NOT NEEDED ANYMORE ; TO RECOVER IF TUT DOESNT WORK
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Chats").document().get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                        db.collection("Chats").get()
-                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                                        usersList.clear();
-                                        for (QueryDocumentSnapshot doc : task.getResult()) {
-
-                                            String sender = doc.getString("sender");
-                                            String receiver = doc.getString("receiver");
-                                            Chat chat = doc.toObject(Chat.class);
-                                            chat.setSender(sender);
-                                            chat.setReceiver(receiver);
-
-                                            if (chat.getSender().equals(currUserUID)) {
-                                                usersList.add(chat.getReceiver());
-                                            }
-                                            if (chat.getReceiver().equals(currUserUID)) {
-                                                usersList.add(chat.getSender());
-                                            }
-                                        }
-                                        readChats();
-                                    }
-                                });
-                    }
-                });
-
-        /*reference = FirebaseDatabase.getInstance().getReference("Chats");
-        reference.addValueEventListener(new ValueEventListener() {
+        db.collection("Chatlist")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                 usersList.clear();
+                for (QueryDocumentSnapshot doc : task.getResult()) {
+                    Chatlist chatlist = doc.toObject(Chatlist.class);
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Chat chat = snapshot.getValue(Chat.class);
+                    String senderID = doc.getString("sender");
+                    String receiverID = doc.getString("receiver");
+                    System.out.println(senderID);
+                    System.out.println(receiverID);
 
-                    if (chat.getSender().equals(fuser.getUid())) {
-                        usersList.add(chat.getReceiver());
+                    if (senderID.equals(currUserUID)) {
+                        String id = doc.getString("receiver");
+                        chatlist.setId(id);
+                        usersList.add(chatlist);
                     }
-                    if (chat.getReceiver().equals(fuser.getUid())) {
-                        usersList.add(chat.getSender());
+
+                    if (receiverID.equals(currUserUID)) {
+                        String id = doc.getString("sender");
+                        chatlist.setId(id);
+                        usersList.add(chatlist);
                     }
                 }
-                readChats();
+                chatList();
             }
-        });*/
+        });
         return view;
     }
 
-    /*private void chatList() {
+    private void chatList() {
         mUsers = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Users").document().get()
@@ -159,52 +114,11 @@ public class ChatFragment extends Fragment {
                                             String username = doc.getString("Username");
                                             user.setUsername(username);
 
-                                            for(Chatlist chatlist : usersList) {
+                                            for (Chatlist chatlist : usersList) {
                                                 if (user.getId().equals(chatlist.getId())) {
-                                                    mUsers.add(user);
-                                                }
-                                            }
-
-                                        }
-                                        userAdapter = new UserAdapter(getContext(), mUsers);
-                                        recyclerView.setAdapter(userAdapter);
-                                    }
-                                });
-                    }
-                });
-
-    }*/
-
-    // NOT NEEDED ANYMORE ; TO RECOVER IF TUT DOESNT WORK
-    private void readChats() {
-        mUsers = new ArrayList<>();
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Users").document().get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                        db.collection("Users").get()
-                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                                        mUsers.clear();
-                                        for (QueryDocumentSnapshot doc : task.getResult()) {
-
-                                            User user = doc.toObject(User.class);
-                                            String docID = doc.getId();
-                                            user.setId(docID);
-                                            String username = doc.getString("Username");
-                                            user.setUsername(username);
-
-                                            //display 1 user from chats PROBLEMATIC
-                                            for (String id : usersList) {
-                                                if (user.getId().equals(id)) {
                                                     if (mUsers.size() != 0) {
-                                                        for (User user1 : mUsers) {
-                                                            if (!user.getId().equals(user1.getId())) {
-                                                                mUsers.add(user);
-                                                            }
+                                                        if (!mUsers.contains(user)) {
+                                                            mUsers.add(user);
                                                         }
                                                     } else {
                                                         mUsers.add(user);
@@ -218,34 +132,5 @@ public class ChatFragment extends Fragment {
                                 });
                     }
                 });
-
-        /*reference = FirebaseDatabase.getInstance().getReference("Users");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
-                mUsers.clear();
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class);
-
-                    //display 1 user from chats
-                    for (String id : usersList) {
-                        if (user.getId().equals(id)) {
-                            if (mUsers.size() != 0) {
-                                for (User user1 : mUsers) {
-                                    if (!user.getId().equals(user1.getId())) {
-                                        mUsers.add(user);
-                                    }
-                                }
-                            } else {
-                                mUsers.add(user);
-                            }
-                        }
-                    }
-                }
-                userAdapter = new UserAdapter(getContext(), mUsers);
-                recyclerView.setAdapter(userAdapter);
-            }
-        });*/
     }
 }

@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -61,6 +62,8 @@ public class MessageActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     Intent intent;
+
+    String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +161,40 @@ public class MessageActivity extends AppCompatActivity {
         newMessage.put("aTime", time);
 
         db.collection("Chats").document().set(newMessage);
+
+        // add user to chat fragment
+        /*final DatabaseReference chatRef = db.collection("Chatlist")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child(userid);
+
+        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if (!dataSnapshot.exists()) {
+                    chatRef.child("id").setValue(userid);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });*/
+
+        /*DocumentReference chatRef = db.collection("Chatlist")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        chatRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot doc = task.getResult();
+                            if (!doc.exists()) {
+                                chatRef.set(userid);
+                            }
+                        }
+                    }
+                });*/
     }
 
     private void readMessages(String myID, String userid/*, String imageurl*/) {

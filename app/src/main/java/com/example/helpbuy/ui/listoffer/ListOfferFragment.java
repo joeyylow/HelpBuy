@@ -9,20 +9,34 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.helpbuy.R;
+import com.example.helpbuy.ui.listrequest.ListRequestFragAdapter;
 import com.example.helpbuy.ui.listrequest.ListRequestFragment;
+import com.example.helpbuy.ui.listrequest.Requests;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ListOfferFragment extends Fragment {
@@ -30,6 +44,9 @@ public class ListOfferFragment extends Fragment {
     private FirebaseFirestore db;
     private FirestoreRecyclerAdapter adapter;
 
+    EditText search_location_offer;
+    private List<Offers> mOffers;
+    private ListOfferFragAdapter offerFragAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,7 +84,7 @@ public class ListOfferFragment extends Fragment {
                         getActivity()
                                 .getSupportFragmentManager()
                                 .beginTransaction()
-                                .add(R.id.offerlistfull,detailsFragment)
+                                .add(R.id.offerlistfull, detailsFragment)
                                 .addToBackStack("offerlist")
                                 .commit();
                     }
@@ -91,7 +108,54 @@ public class ListOfferFragment extends Fragment {
         offersList.setHasFixedSize(true);
         offersList.setLayoutManager(new LinearLayoutManager(context));
         offersList.setAdapter(adapter);
+
+        mOffers = new ArrayList<>();
+
+        search_location_offer = view.findViewById(R.id.search_location_offer);
+        search_location_offer.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchLocationOffer(s.toString().toLowerCase());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         return view;
+    }
+
+    private void searchLocationOffer(String s) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Job_offers").orderBy("LowercapsLocation")
+                .startAt(s)
+                .endAt(s + "\uf8ff")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                        mOffers.clear();
+                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                            Offers offer = doc.toObject(Offers.class);
+
+                            String docID = doc.getString("DOCID");
+                            offer.setdocID(docID);
+
+                            String personAcceptedUID = offer.getaUID();
+                            if (personAcceptedUID.equals("")) {
+                                mOffers.add(offer);
+                            }
+                        }
+                        offerFragAdapter = new ListOfferFragAdapter(getContext(), mOffers);
+                        offersList.setAdapter(offerFragAdapter);
+                    }
+                });
     }
 
     public void showFragment() {

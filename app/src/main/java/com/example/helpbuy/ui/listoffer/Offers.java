@@ -17,8 +17,11 @@ public class Offers {
     private String UID;
     private String aUID;
 
+    private String docID;
 
-    public Offers(String location, String dateOfPurchase, String minFeesRequest, String remarks, String duration, String uid, String aUID) {
+
+    public Offers(String location, String dateOfPurchase, String minFeesRequest, String remarks,
+                  String duration, String uid, String aUID, String docID) {
         this.Location = location;
         this.dateOfPurchase = dateOfPurchase;
         this.minFeesRequest = minFeesRequest;
@@ -26,6 +29,7 @@ public class Offers {
         this.Duration = duration;
         this.UID = uid;
         this.aUID = aUID;
+        this.docID = docID;
     }
     public Offers() {}
 
@@ -89,4 +93,8 @@ public class Offers {
     public void setaUID(String aUID) {
         this.aUID = aUID;
     }
+
+
+    public void setdocID(String docID) { this.docID = docID; }
+    public String getdocID() {return docID; }
 }

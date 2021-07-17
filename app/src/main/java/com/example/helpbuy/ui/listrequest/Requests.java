@@ -22,7 +22,11 @@ public class Requests {
     private String UID;
     private String aUID;
 
-    public Requests(String item, String location, String deliveryDate, String deliveryTime, String deliveryFees, String quantity, String remarks, String estimatedPrice, String UID, String aUID){
+    private String docID;
+
+    public Requests(String item, String location, String deliveryDate, String deliveryTime,
+                    String deliveryFees, String quantity, String remarks, String estimatedPrice,
+                    String UID, String aUID, String docID) {
         this.Item = item;
         this.Location = location;
         this.deliveryDate = deliveryDate;
@@ -33,6 +37,7 @@ public class Requests {
         this.estimatedPrice = estimatedPrice;
         this.UID = UID;
         this.aUID = aUID;
+        this.docID = docID;
     }
 
     public Requests() {}
@@ -125,4 +130,8 @@ public class Requests {
     public void setaUID(String aUID) {
         this.aUID = aUID;
     }
+
+
+    public void setdocID(String docID) { this.docID = docID; }
+    public String getdocID() {return docID; }
 }

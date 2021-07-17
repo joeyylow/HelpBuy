@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.helpbuy.R;
 import com.example.helpbuy.ui.Adapter.UserAdapter;
 import com.example.helpbuy.ui.Model.Chat;
+import com.example.helpbuy.ui.Model.Chatlist;
 import com.example.helpbuy.ui.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,6 +45,7 @@ public class ChatFragment extends Fragment {
     private UserAdapter userAdapter;
     private List<User> mUsers;
 
+    //private List<Chatlist> usersList;
     private List<String> usersList;
 
     @Override
@@ -59,6 +61,32 @@ public class ChatFragment extends Fragment {
 
         usersList = new ArrayList<>();
 
+        /*FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Chatlist").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                        db.collection("Chatlist").get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                                        usersList.clear();
+                                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                                            String id = doc.getString("id");
+                                            Chatlist chatlist = doc.toObject(Chatlist.class);
+                                            chatlist.setId(id);
+
+                                            usersList.add(chatlist);
+                                        }
+
+                                        chatList();
+                                    }
+                                });
+                    }
+                });*/
+
+
+        // NOT NEEDED ANYMORE ; TO RECOVER IF TUT DOESNT WORK
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Chats").document().get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -112,6 +140,42 @@ public class ChatFragment extends Fragment {
         return view;
     }
 
+    /*private void chatList() {
+        mUsers = new ArrayList<>();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Users").document().get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                        db.collection("Users").get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                                        mUsers.clear();
+                                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                                            User user = doc.toObject(User.class);
+                                            String docID = doc.getId();
+                                            user.setId(docID);
+                                            String username = doc.getString("Username");
+                                            user.setUsername(username);
+
+                                            for(Chatlist chatlist : usersList) {
+                                                if (user.getId().equals(chatlist.getId())) {
+                                                    mUsers.add(user);
+                                                }
+                                            }
+
+                                        }
+                                        userAdapter = new UserAdapter(getContext(), mUsers);
+                                        recyclerView.setAdapter(userAdapter);
+                                    }
+                                });
+                    }
+                });
+
+    }*/
+
+    // NOT NEEDED ANYMORE ; TO RECOVER IF TUT DOESNT WORK
     private void readChats() {
         mUsers = new ArrayList<>();
 

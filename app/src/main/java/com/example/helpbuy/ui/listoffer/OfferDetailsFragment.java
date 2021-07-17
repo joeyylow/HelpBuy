@@ -25,10 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
 
-
-
 public class OfferDetailsFragment extends Fragment{
-    private FragmentOfferdetailsBinding binding;
+    //private FragmentOfferdetailsBinding binding;
     private String locationString;
     private String dateString;
     private String timeString;
@@ -85,7 +83,6 @@ public class OfferDetailsFragment extends Fragment{
 
         //Button activity
         Button btnAcceptOffer = (Button) view.findViewById(R.id.acceptofferbutton);
-
 
         btnAcceptOffer.setOnClickListener(new View.OnClickListener() {
             @Override

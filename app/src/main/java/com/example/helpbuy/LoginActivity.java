@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -88,21 +89,28 @@ public class LoginActivity extends AppCompatActivity {
                                         // If sign in fails, display a message to the user. If sign in succeeds
                                         // the auth state listener will be notified and logic to handle the
                                         // signed in user can be handled in the listener.
-                                progressBar.setVisibility(View.GONE);
-                                if (!task.isSuccessful()) {
-                                    // there was an error
-                                    if (password.length() < 6) {
-                                        inputPassword.setError(getString(R.string.minimum_password));
-                                    } else {
-                                        Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                        if (!task.isSuccessful()) {
+                                            // there was an error
+                                            if (password.length() < 6) {
+                                                inputPassword.setError(getString(R.string.minimum_password));
+                                            } else {
+                                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                            }
+
+                                        } else if (!auth.getCurrentUser().isEmailVerified()) {
+                                            Toast.makeText(getApplicationContext(), "Please check your inbox and verify your email", Toast.LENGTH_LONG).show();
+                                            auth.signOut();
+
+                                        } else {
+                                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                            finish();
+                                        }
                                     }
-                                } else {
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                    finish();
-                                }
-                            }
+
                         });
             }
         });
     }
+
 }

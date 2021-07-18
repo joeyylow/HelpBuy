@@ -58,11 +58,15 @@ public class EditProfileFragment extends Fragment {
                 String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 DocumentReference currentDoc = db.collection("Users").document(currentUID);
 
-                if (username.isEmpty() || phoneNumber.isEmpty()){
+                if (username.isEmpty() && phoneNumber.isEmpty()){
                     Toast.makeText(getContext(), "Please enter username or phone number", Toast.LENGTH_SHORT).show();
                 }
 
-                else {
+                if (!phoneNumber.isEmpty() && phoneNumber.length()<8){
+                    Toast.makeText(getContext(), "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
+                }
+
+                else if (!username.isEmpty() && phoneNumber.isEmpty()){
                     Query query = db.collection("Users").whereEqualTo("Search", username.toLowerCase());
                     query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -73,22 +77,51 @@ public class EditProfileFragment extends Fragment {
                             } else {
                                 currentDoc.update("Username", username);
                                 currentDoc.update("Search", username.toLowerCase());
-                                currentDoc.update("PhoneNumber", phoneNumber);
                                 Toast.makeText(getContext(), "Profile updated.", Toast.LENGTH_SHORT).show();
                                 inputNewUsername.getText().clear();
-                                inputNewPhoneNumber.getText().clear();
                             }
                         }
                     });
+
+                }
+
+                else if (username.isEmpty() && !phoneNumber.isEmpty()){
+                    updatePhoneNumber(currentDoc,phoneNumber);
+                    Toast.makeText(getContext(), "Profile updated.", Toast.LENGTH_SHORT).show();
+                    inputNewPhoneNumber.getText().clear();
+                }
+
+                else {
+                    updatePhoneNumber(currentDoc,phoneNumber);
+                    updateUsername(currentDoc,username);
+                    Toast.makeText(getContext(), "Profile updated.", Toast.LENGTH_SHORT).show();
+                    inputNewUsername.getText().clear();
+                    inputNewPhoneNumber.getText().clear();
                 }
             }
         });
-
         return view;
     }
 
+    public void updatePhoneNumber(DocumentReference currentDoc, String phoneNumber) {
+        currentDoc.update("PhoneNumber", phoneNumber);
+    }
 
-
-
+    public void updateUsername(DocumentReference currentDoc, String username){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Query query = db.collection("Users").whereEqualTo("Search", username.toLowerCase());
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                QuerySnapshot snapshot = task.getResult();
+                if (!snapshot.isEmpty()) {
+                    Toast.makeText(getContext(), "Username Exists. Please enter another username", Toast.LENGTH_SHORT).show();
+                } else {
+                    currentDoc.update("Username", username);
+                    currentDoc.update("Search", username.toLowerCase());
+                }
+            }
+        });
+    }
 
 }

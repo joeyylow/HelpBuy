@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -59,6 +60,48 @@ public class AddRequestFragment extends Fragment {
                 String deliveryFees = textDeliveryFees.getText().toString();
                 String remarks = textRemarks.getText().toString();
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                if (location.isEmpty()){
+                    Toast.makeText(getContext(),
+                            "Please enter location.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (item.isEmpty()){
+                    Toast.makeText(getContext(),
+                            "Please enter item.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (quantity.isEmpty()){
+                    Toast.makeText(getContext(),
+                            "Please enter quantity(min. 1)", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (estPrice.isEmpty()){
+                    Toast.makeText(getContext(),
+                            "Please enter an estimated price. If unsure, please enter $0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (deliveryDate.isEmpty()){
+                    Toast.makeText(getContext(),
+                            "Please enter date of delivery", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (deliveryTime.isEmpty()){
+                    Toast.makeText(getContext(),
+                            "Please enter time of delivery", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (deliveryFees.isEmpty()){
+                    Toast.makeText(getContext(),
+                            "Please enter your offered delivery fee", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Map<String, String> newRequest = new HashMap<>();
                 newRequest.put("Location", location);

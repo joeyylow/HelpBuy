@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,6 +57,30 @@ public class AddOfferFragment extends Fragment {
                 String minFeesRequest = textMinFeesRequest.getText().toString();
                 String remarks = textRemarks.getText().toString();
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                if (location.isEmpty()){
+                    Toast.makeText(getContext(),
+                            "Please enter location.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (dateOfPurchase.isEmpty()){
+                    Toast.makeText(getContext(),
+                            "Please enter date.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (duration.isEmpty()){
+                    Toast.makeText(getContext(),
+                            "Please enter duration.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (minFeesRequest.isEmpty()){
+                    Toast.makeText(getContext(),
+                            "Please enter a minimum fee($0 is accepted).", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Map<String, String> newRequest = new HashMap<>();
                 newRequest.put("Location", location);

@@ -170,17 +170,8 @@ public class SignUpActivity extends AppCompatActivity {
                                                     //Toast.makeText(SignUpActivity.this, "Registration Successful" , Toast.LENGTH_SHORT).show();
 //                                                    View contextView = (View) findViewById(R.id.sign_up_button);
                                                     sendEmailVerification();
-//
-//                                                    Snackbar snackbar = Snackbar.make(contextView, "Please verify your email and log in", Snackbar.LENGTH_LONG);
-//                                                    //.setAction("OK") {finish();}
-//                                                    snackbar.setAction("Ok", new View.OnClickListener() {
-//                                                        @Override
-//                                                        public void onClick(View v) {
-//                                                            // Call your action method here
-//                                                            snackbar.dismiss();
-//                                                        }
-//                                                    });
-//                                                    snackbar.show();
+
+                                                    ClearAction();
 
                                                     progressBar.setVisibility(View.GONE);
                                                 }
@@ -195,19 +186,6 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     });
                 }
-
-
-                /*// Send user a verification email EDIT MORE IN PHASE 3
-                user.sendEmailVerification()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Verification email has been sent.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-*/
             }
         });
 
@@ -229,7 +207,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d("SUCCESS", "sendEmailVerification", task.getException());
                             View contextView = (View) findViewById(R.id.sign_up_button);
-                            Snackbar snackbar = Snackbar.make(contextView, "Please verify your email and log in", Snackbar.LENGTH_LONG);
+                            Snackbar snackbar = Snackbar.make(contextView, "Registration successful. Please verify your email and log in.", Snackbar.LENGTH_LONG);
                             //.setAction("OK") {finish();}
                             snackbar.setAction("Ok", new View.OnClickListener() {
                                 @Override
@@ -250,10 +228,17 @@ public class SignUpActivity extends AppCompatActivity {
         auth.signOut();
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
         progressBar.setVisibility(View.GONE);
+    }
+
+    public void ClearAction() {
+        inputUsername.getText().clear();
+        inputEmail.getText().clear();
+        inputPhoneNumber.getText().clear();
+        inputPassword.getText().clear();
+        inputPasswordAgain.getText().clear();
     }
 }

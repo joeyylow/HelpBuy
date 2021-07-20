@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.helpbuy.R;
 
@@ -68,14 +69,6 @@ public class RequestDetailsFragment extends Fragment {
         TextView quantity = view.findViewById(R.id.requestdetails_quantity);
         TextView user = view.findViewById(R.id.buyerusername);
 
-//        item.setText(itemString);
-//        location.setText(locationString);
-//        date.setText(dateString);
-//        time.setText(dateString);
-//        deliveryfees.setText(deliveryfeesString);
-//        quantity.setText(quantityString);
-//        remarks.setText(remarksString);
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("Users").document(this.UID);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -106,9 +99,13 @@ public class RequestDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                db.collection("Job_requests").document(documentID).update("aUID",FirebaseAuth.getInstance().getCurrentUser().getUid());
-                AcceptRequestDialogBox acceptRequestDialogBox = new AcceptRequestDialogBox();
-                acceptRequestDialogBox.show(getFragmentManager(),"acceptrequestdialog");
+                if (UID.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                    Toast.makeText(getActivity(), "You cannot accept your own request.", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    db.collection("Job_requests").document(documentID).update("aUID",FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    AcceptRequestDialogBox acceptRequestDialogBox = new AcceptRequestDialogBox();
+                    acceptRequestDialogBox.show(getFragmentManager(),"acceptrequestdialog");
 //                DocumentReference docRef = db.collection("Job_requests").document(documentID);
 //                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 //                    @Override
@@ -122,7 +119,7 @@ public class RequestDetailsFragment extends Fragment {
 //                            openDialog();
 //                        }
 //                    }
-
+                }
             }
         });
 

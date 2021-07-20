@@ -55,8 +55,6 @@ public class MessageActivity extends AppCompatActivity {
     CircleImageView profileImage;
     TextView username;
 
-    DatabaseReference reference;
-
     ImageButton btn_send;
     EditText text_send;
 
@@ -66,8 +64,6 @@ public class MessageActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     Intent intent;
-
-    String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +102,7 @@ public class MessageActivity extends AppCompatActivity {
                 String msg = text_send.getText().toString();
 
                 Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String currentTime = simpleDateFormat.format(calendar.getTime());
 
                 if (!msg.equals("")) {

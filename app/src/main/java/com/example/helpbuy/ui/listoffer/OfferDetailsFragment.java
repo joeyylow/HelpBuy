@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.helpbuy.R;
 
@@ -88,9 +89,12 @@ public class OfferDetailsFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                db.collection("Job_offers").document(documentID).update("aUID",FirebaseAuth.getInstance().getCurrentUser().getUid());
-                AcceptOfferDialogBox acceptOfferDialogBox = new AcceptOfferDialogBox();
-                acceptOfferDialogBox.show(getFragmentManager(),"acceptofferdialog");
+                if (UID.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                    Toast.makeText(getActivity(), "You cannot accept your own offer.", Toast.LENGTH_SHORT).show();
+                } else {
+                    db.collection("Job_offers").document(documentID).update("aUID", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    AcceptOfferDialogBox acceptOfferDialogBox = new AcceptOfferDialogBox();
+                    acceptOfferDialogBox.show(getFragmentManager(), "acceptofferdialog");
 //                DocumentReference docRef = db.collection("Job_offers").document(documentID);
 //                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 //                    @Override
@@ -109,6 +113,7 @@ public class OfferDetailsFragment extends Fragment{
 //                        acceptOfferDialogBox.show(getFragmentManager(),"acceptofferdialog");
 //                    }
 //                });
+                }
             }
         });
 

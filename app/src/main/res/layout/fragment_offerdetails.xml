@@ -32,11 +32,12 @@
 
         <TextView
             android:id="@+id/offerdetails_location"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:text="TextView"
             android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView17"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,12 +54,13 @@
 
         <TextView
             android:id="@+id/offerdetails_deliveryfees"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="20dp"
             android:text="TextView"
             android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView20"
             app:layout_constraintTop_toBottomOf="@+id/offerdetails_deliverytime" />
 
@@ -85,16 +87,17 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/offerdetails_location"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/offerdetails_location" />
 
         <TextView
             android:id="@+id/offerdetails_deliverytime"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="20dp"
             android:text="TextView"
             android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView19"
             app:layout_constraintTop_toBottomOf="@+id/offerdetails_deliverydate" />
 
@@ -111,23 +114,25 @@
 
         <TextView
             android:id="@+id/offerdetails_remarks"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="20dp"
             android:text="TextView"
             android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView22"
             app:layout_constraintTop_toBottomOf="@+id/offerdetails_deliveryfees" />
 
         <TextView
             android:id="@+id/offerdetails_deliverydate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="20dp"
             android:text="TextView"
             android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView18"
             app:layout_constraintTop_toBottomOf="@+id/offerdetails_location" />
 
@@ -155,11 +160,12 @@
 
         <TextView
             android:id="@+id/delivererusername"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toBottomOf="@+id/offerdetails_remarks" />
     </androidx.constraintlayout.widget.ConstraintLayout>

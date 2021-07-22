@@ -34,6 +34,15 @@
         android:textColor="@color/black"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="You may choose to change your username and/ or phone number."
+        android:textStyle="italic" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout10"
         android:layout_width="match_parent"
@@ -71,7 +80,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#FBC02D"
+        app:cornerRadius="40dp"
+        android:backgroundTint="#FFA000"
         android:text="Apply changes" />
 
 </LinearLayout>

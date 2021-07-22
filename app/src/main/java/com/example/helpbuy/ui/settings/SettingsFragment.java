@@ -41,6 +41,7 @@ public class SettingsFragment extends Fragment {
         Button changePasswordButton = view.findViewById(R.id.changepasswordbutton);
         Button sendFeedbackButton = view.findViewById(R.id.sendfeedbackbutton);
         TextView textUsername = view.findViewById(R.id.textView27);
+        Button ratingButton = view.findViewById(R.id.ratingbutton);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -98,6 +99,22 @@ public class SettingsFragment extends Fragment {
                                 .beginTransaction()
                                 .replace(R.id.settingscontainer, sendFeedbackFragment)
                                 .addToBackStack("sendfeedback")
+                                .commit();
+                    }
+                });
+
+        ratingButton.
+                setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LinearLayout fl = view.findViewById(R.id.settingscontainer);
+                        fl.removeAllViews();
+                        RatingFragment ratingFragment = new RatingFragment();
+                        getActivity()
+                                .getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.settingscontainer, ratingFragment)
+                                .addToBackStack("rating")
                                 .commit();
                     }
                 });

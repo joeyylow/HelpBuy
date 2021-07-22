@@ -169,7 +169,14 @@ public class SignUpActivity extends AppCompatActivity {
 
                                                     //Toast.makeText(SignUpActivity.this, "Registration Successful" , Toast.LENGTH_SHORT).show();
 //                                                    View contextView = (View) findViewById(R.id.sign_up_button);
+                                                    inputUsername.getText().clear();
+                                                    inputEmail.getText().clear();
+                                                    inputPhoneNumber.getText().clear();
+                                                    inputPassword.getText().clear();
+                                                    inputPasswordAgain.getText().clear();
+
                                                     sendEmailVerification();
+
 //
 //                                                    Snackbar snackbar = Snackbar.make(contextView, "Please verify your email and log in", Snackbar.LENGTH_LONG);
 //                                                    //.setAction("OK") {finish();}

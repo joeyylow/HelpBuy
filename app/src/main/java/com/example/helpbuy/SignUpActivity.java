@@ -108,7 +108,7 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (phoneNumber.length()<8){
+                if (phoneNumber.length()!=8){
                     Toast.makeText(getApplicationContext(), "Invalid phone number", Toast.LENGTH_SHORT).show();
                     return;
                 }

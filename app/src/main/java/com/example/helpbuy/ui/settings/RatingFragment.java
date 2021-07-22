@@ -62,12 +62,10 @@ public class RatingFragment extends Fragment {
                                     doc.get("Search").toString(),
                                     doc.get("PhoneNumber").toString(),docID);
 
-                            System.out.println("Current doc UID:" + userUID);
-                            System.out.println("Current doc Username:" + docUsername);
-                            System.out.println("Current user UID:" + currUserUID);
 
                             if (user.getUsername().equals("") || user.getId().equals(currUserUID)) {
                                 continue;
+
                             } else {
                                 //CASE 1
                                 db.collection("Job_requests")
@@ -77,11 +75,12 @@ public class RatingFragment extends Fragment {
                                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                             @Override
                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                                                 if(task.isSuccessful()&& !task.getResult().isEmpty()) {
                                                     mUsers.add(user);
                                                 } else {
                                                     //CASE 2
-                                                    System.out.println("Case 1 mUsers:"+mUsers);
+//                                                    System.out.println("Case 1:"+user.getUsername()+mUsers);
                                                     db.collection("Job_requests")
                                                             .whereEqualTo("UID", currUserUID)
                                                             .whereEqualTo("aUID", userUID)
@@ -93,7 +92,7 @@ public class RatingFragment extends Fragment {
                                                                         mUsers.add(user);
                                                                     } else {
                                                                         //CASE 3
-                                                                        System.out.println("Case 2 mUsers:"+mUsers);
+//                                                                        System.out.println("Case 2 mUsers:"+user.getUsername()+mUsers);
                                                                         db.collection("Job_offers")
                                                                                 .whereEqualTo("UID",currUserUID)
                                                                                 .whereEqualTo("aUID",userUID)
@@ -101,11 +100,11 @@ public class RatingFragment extends Fragment {
                                                                                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                                                     @Override
                                                                                     public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                                                                                        if(task.isSuccessful()&& !task.getResult().isEmpty()) {
+                                                                                        if(task.isSuccessful() && !task.getResult().isEmpty()) {
                                                                                             mUsers.add(user);
                                                                                         } else {
                                                                                             //CASE 4
-                                                                                            System.out.println("Case 3 mUsers:"+mUsers);
+//                                                                                            System.out.println("Case 3 mUsers:"+user.getUsername()+mUsers);
                                                                                             db.collection("Job_offers")
                                                                                                     .whereEqualTo("aUID",currUserUID)
                                                                                                     .whereEqualTo("UID",userUID)
@@ -113,10 +112,12 @@ public class RatingFragment extends Fragment {
                                                                                                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                                                                         @Override
                                                                                                         public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                                                                                                            if(!task.getResult().isEmpty()){
+                                                                                                            if(task.isSuccessful() && !task.getResult().isEmpty()){
                                                                                                                 mUsers.add(user);
                                                                                                             }
-
+//                                                                                                            System.out.println("Final mUsers: "+ mUsers);
+                                                                                                            userRatingAdapter = new UserRatingAdapter(getContext(), mUsers);
+                                                                                                            recyclerView.setAdapter(userRatingAdapter);
                                                                                                         }
                                                                                                     });
                                                                                         }
@@ -126,9 +127,9 @@ public class RatingFragment extends Fragment {
                                                                 }
                                                             });
                                                 }
-                                                System.out.println("Final mUsers: "+ mUsers);
-                                                userRatingAdapter = new UserRatingAdapter(getContext(), mUsers);
-                                                recyclerView.setAdapter(userRatingAdapter);
+//                                                System.out.println("Final mUsers: "+ mUsers);
+//                                                userRatingAdapter = new UserRatingAdapter(getContext(), mUsers);
+//                                                recyclerView.setAdapter(userRatingAdapter);
 
                                             }
                                         });
@@ -138,7 +139,6 @@ public class RatingFragment extends Fragment {
                     }
                 });
 
-        System.out.println(mUsers);
         return view;
     }
 }

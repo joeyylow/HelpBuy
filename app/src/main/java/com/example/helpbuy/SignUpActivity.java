@@ -169,9 +169,12 @@ public class SignUpActivity extends AppCompatActivity {
 
                                                     //Toast.makeText(SignUpActivity.this, "Registration Successful" , Toast.LENGTH_SHORT).show();
 //                                                    View contextView = (View) findViewById(R.id.sign_up_button);
+                                         
+
                                                     sendEmailVerification();
 
                                                     ClearAction();
+
 
                                                     progressBar.setVisibility(View.GONE);
                                                 }

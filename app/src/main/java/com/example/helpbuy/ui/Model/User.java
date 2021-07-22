@@ -1,7 +1,6 @@
 package com.example.helpbuy.ui.Model;
 
 public class User {
-
     private String id;
     private String username;
     private String imageURL;
@@ -19,6 +18,7 @@ public class User {
     public User() {
 
     }
+
 
     public String getId() {
         return id;

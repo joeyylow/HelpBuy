@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="40dp"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
         android:text="TextView"
@@ -62,5 +62,17 @@
         android:text="Send feedback>"
         android:textSize="15sp"
         app:backgroundTint="@null" />
+
+    <Button
+        android:id="@+id/ratingbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="#FBC02D"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        android:text="Rate Users>"
+        android:textSize="15sp"
+        app:backgroundTint="@null"/>
 
 </LinearLayout>

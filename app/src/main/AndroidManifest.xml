@@ -24,11 +24,6 @@
             android:theme="@style/Theme.HelpBuy.NoActionBar">
         </activity>
 
-        <activity
-            android:name=".ui.transactions.TransactionActivity"
-            android:screenOrientation="portrait"
-            android:label="My Transactions">
-        </activity>
 
         <activity android:name=".LoginActivity"
             android:theme="@style/Theme.HelpBuy.NoActionBar">

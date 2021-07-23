@@ -27,15 +27,14 @@ import java.util.Map;
 
 public class AddOfferFragment extends Fragment {
 
-    private AddOfferViewModel addOfferViewModel;
     private FragmentAddofferBinding binding;
     private Button btnSubmit;
     private EditText textLocation, textDateOfPurchase, textDuration, textMinFeesRequest, textRemarks;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        addOfferViewModel =
-                new ViewModelProvider(this).get(AddOfferViewModel.class);
+//        addOfferViewModel =
+//                new ViewModelProvider(this).get(AddOfferViewModel.class);
 
         binding = FragmentAddofferBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

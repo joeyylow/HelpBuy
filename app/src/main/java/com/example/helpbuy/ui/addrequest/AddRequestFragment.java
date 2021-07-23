@@ -23,7 +23,6 @@ import java.util.Map;
 
 public class AddRequestFragment extends Fragment {
 
-    private AddRequestViewModel addRequestViewModel;
     private FragmentAddrequestBinding binding;
     private Button btnSubmit;
     private EditText textLocation, textItem, textQuantity,

@@ -5,30 +5,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Menu;
 
-import com.example.helpbuy.ui.listrequest.ListRequestFragment;
-import com.example.helpbuy.ui.listrequest.RequestDetailsFragment;
-import com.example.helpbuy.ui.transactions.TransactionActivity;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.helpbuy.R;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import android.content.Intent;
 
 import com.example.helpbuy.databinding.ActivityNavigationBinding;
-
-import org.jetbrains.annotations.NotNull;
 
 public class NavigationActivity extends AppCompatActivity {
 

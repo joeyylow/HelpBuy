@@ -167,7 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Remarks"
+                    android:hint="Remarks (Eg. Where to deliver to)"
                     android:inputType="text"
                     android:textSize="14sp" />
 

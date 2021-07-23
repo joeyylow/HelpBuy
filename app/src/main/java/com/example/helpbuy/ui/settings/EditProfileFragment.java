@@ -62,7 +62,7 @@ public class EditProfileFragment extends Fragment {
                     Toast.makeText(getContext(), "Please enter username or phone number", Toast.LENGTH_SHORT).show();
                 }
 
-                if (!phoneNumber.isEmpty() && phoneNumber.length()<8){
+                if (!phoneNumber.isEmpty() && phoneNumber.length()!=8){
                     Toast.makeText(getContext(), "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
                 }
 

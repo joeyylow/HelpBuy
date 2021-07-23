@@ -49,4 +49,9 @@ public class FirebaseUser {
     public void setId(String userID) {
         this.userID = userID;
     }
+
+    @Override
+    public String toString() {
+        return "This user is " +getUsername() ;
+    }
 }

@@ -17,7 +17,7 @@ public class Offers {
     private String UID;
     private String aUID;
 
-    private String docID;
+    private String DOCID;
 
 
     public Offers(String location, String dateOfPurchase, String minFeesRequest, String remarks,
@@ -29,7 +29,7 @@ public class Offers {
         this.Duration = duration;
         this.UID = uid;
         this.aUID = aUID;
-        this.docID = docID;
+        this.DOCID = docID;
     }
     public Offers() {}
 
@@ -95,6 +95,6 @@ public class Offers {
     }
 
 
-    public void setdocID(String docID) { this.docID = docID; }
-    public String getdocID() {return docID; }
+    public void setdocID(String docID) { this.DOCID = docID; }
+    public String getdocID() {return DOCID; }
 }

@@ -3,6 +3,7 @@ package com.example.helpbuy.ui.settings;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +74,9 @@ public class UserRatingAdapter extends RecyclerView.Adapter<UserRatingAdapter.Vi
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
+
+        linearLayout.setGravity(Gravity.CENTER);
+
         rating.setLayoutParams(lp);
         rating.setNumStars(5);
         rating.setStepSize(1);
@@ -84,7 +88,6 @@ public class UserRatingAdapter extends RecyclerView.Adapter<UserRatingAdapter.Vi
 
         popDialog.setTitle("Rate your experience with "+user.getUsername());
 
-        popDialog.setMessage("Note: You can only rate each user once");
 
         //add linearLayout to dailog
         popDialog.setView(linearLayout);
